@@ -88,4 +88,11 @@ class PokemonEntity {
 
     return numericRegex.hasMatch(string);
   }
+
+  static Future<List<PokemonEntity>> getAllPokemon() async {
+    AppDb appDb = getIt.get<AppDb>();
+    List<PokemonEntity>? pokemonEntityList =
+        await (appDb.select(appDb.pokemon)).get();
+    return pokemonEntityList;
+  }
 }

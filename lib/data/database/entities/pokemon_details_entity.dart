@@ -52,4 +52,16 @@ class PokemonDetailsEntity {
 
     return pokemonDetailsEntity;
   }
+
+  static Future<PokemonDetailsEntity?> getPokemonDetailsByName(
+      String name) async {
+    AppDb appDb = getIt.get<AppDb>();
+    PokemonDetailsEntity? pokemonDetailsEntity =
+        await (appDb.select(appDb.pokemonDetails)
+              ..where((tbl) => tbl.name.equals(name)))
+            .getSingleOrNull();
+    pokemonDetailsEntity?.statsEntityList =
+        await StatsEntity.getPokemonStatsByName(name);
+    return pokemonDetailsEntity;
+  }
 }

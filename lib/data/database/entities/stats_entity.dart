@@ -66,4 +66,12 @@ class StatsEntity {
 
     return statsList;
   }
+
+  static Future<List<StatsEntity>> getPokemonStatsByName(String name) async {
+    AppDb appDb = getIt.get<AppDb>();
+    List<StatsEntity>? statsEntityList = await (appDb.select(appDb.stats)
+          ..where((tbl) => tbl.pokemonName.equals(name)))
+        .get();
+    return statsEntityList;
+  }
 }
