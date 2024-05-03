@@ -72,15 +72,14 @@ class PokemonEntity {
   }
 
   static Future<void> _buildImageUrl(PokemonEntity pokemonEntity) async {
-    RegExp exp = RegExp(r'/([0-9]/*)');
-    RegExpMatch? match = exp.firstMatch(pokemonEntity.url ?? "");
-    String? pokemonIdAsString = match?.group(1);
+    RegExp exp = RegExp(r'\d');
+    Iterable<Match>? matches = exp.allMatches(pokemonEntity.url ?? "");
+    String? pokemonIdAsString = matches.map((e) => e.group(0)!).lastOrNull;
     if (pokemonIdAsString != null &&
         pokemonIdAsString.isNotEmpty &&
         _isNumericUsingRegularExpression(pokemonIdAsString) == true) {
       pokemonEntity.order = int.tryParse(pokemonIdAsString);
-      pokemonEntity.imageUrl =
-          "$baseImageUrl${match?.group(1) ?? ''}$pngFormat";
+      pokemonEntity.imageUrl = "$baseImageUrl$pokemonIdAsString$pngFormat";
     }
   }
 
