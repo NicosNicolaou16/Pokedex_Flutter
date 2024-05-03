@@ -127,13 +127,22 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: LinearProgressIndicator(
-                    minHeight: 30,
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    value:
-                        (pokemonDetailsDataModel.statsEntity?.baseStat ?? 0) /
-                            100,
-                    backgroundColor: Colors.grey,
+                  child: TweenAnimationBuilder<double>(
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.easeInOut,
+                    tween: Tween<double>(
+                      begin: 0,
+                      end: (pokemonDetailsDataModel.statsEntity?.baseStat ?? 0) /
+                          100,
+                    ),
+                    builder: (context, value, _) =>
+                        LinearProgressIndicator(
+                          minHeight: 30,
+                          borderRadius: const BorderRadius.all(Radius.circular(15)),
+                          value:
+                          value,
+                          backgroundColor: Colors.grey,
+                        ),
                   ),
                 ),
               ],
