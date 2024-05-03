@@ -310,9 +310,9 @@ class $StatsTable extends Stats with TableInfo<$StatsTable, StatsEntity> {
   static const VerificationMeta _baseStatMeta =
       const VerificationMeta('baseStat');
   @override
-  late final GeneratedColumn<String> baseStat = GeneratedColumn<String>(
+  late final GeneratedColumn<int> baseStat = GeneratedColumn<int>(
       'base_stat', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+      type: DriftSqlType.int, requiredDuringInsert: false);
   static const VerificationMeta _statNameMeta =
       const VerificationMeta('statName');
   @override
@@ -369,7 +369,7 @@ class $StatsTable extends Stats with TableInfo<$StatsTable, StatsEntity> {
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       baseStat: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}base_stat']),
+          .read(DriftSqlType.int, data['${effectivePrefix}base_stat']),
       statName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}stat_name']),
       pokemonName: attachedDatabase.typeMapping
@@ -385,7 +385,7 @@ class $StatsTable extends Stats with TableInfo<$StatsTable, StatsEntity> {
 
 class StatsCompanion extends UpdateCompanion<StatsEntity> {
   final Value<int> id;
-  final Value<String?> baseStat;
+  final Value<int?> baseStat;
   final Value<String?> statName;
   final Value<String?> pokemonName;
   const StatsCompanion({
@@ -402,7 +402,7 @@ class StatsCompanion extends UpdateCompanion<StatsEntity> {
   });
   static Insertable<StatsEntity> custom({
     Expression<int>? id,
-    Expression<String>? baseStat,
+    Expression<int>? baseStat,
     Expression<String>? statName,
     Expression<String>? pokemonName,
   }) {
@@ -416,7 +416,7 @@ class StatsCompanion extends UpdateCompanion<StatsEntity> {
 
   StatsCompanion copyWith(
       {Value<int>? id,
-      Value<String?>? baseStat,
+      Value<int?>? baseStat,
       Value<String?>? statName,
       Value<String?>? pokemonName}) {
     return StatsCompanion(
@@ -434,7 +434,7 @@ class StatsCompanion extends UpdateCompanion<StatsEntity> {
       map['id'] = Variable<int>(id.value);
     }
     if (baseStat.present) {
-      map['base_stat'] = Variable<String>(baseStat.value);
+      map['base_stat'] = Variable<int>(baseStat.value);
     }
     if (statName.present) {
       map['stat_name'] = Variable<String>(statName.value);
