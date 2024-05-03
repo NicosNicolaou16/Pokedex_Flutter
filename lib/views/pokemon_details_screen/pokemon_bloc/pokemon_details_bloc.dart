@@ -1,13 +1,14 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:palette_generator/palette_generator.dart';
 import 'package:pokedex_flutter/data/models/pokemon_details_data_model/pokemon_details_data_model.dart';
 import 'package:pokedex_flutter/data/repositories/pokemon_details_repository.dart';
-import 'package:pokedex_flutter/data/repositories/pokemon_repository.dart';
 import 'package:pokedex_flutter/utils/error_handling.dart';
 import 'package:pokedex_flutter/utils/get_it_dependencies_injection.dart';
 import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemon_details_events.dart';
 import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemon_details_states.dart';
-import 'package:pokedex_flutter/views/pokemon_list_screen/pokemon_bloc/pokemon_list_events.dart';
-import 'package:pokedex_flutter/views/pokemon_list_screen/pokemon_bloc/pokemon_list_states.dart';
 
 class PokemonDetailsBloc
     extends Bloc<PokemonDetailsEvents, PokemonDetailsStates> {
@@ -16,6 +17,7 @@ class PokemonDetailsBloc
 
   PokemonDetailsBloc() : super(PokemonDetailsStates()) {
     on<PokemonDetailsFetchData>(_onPokemonDetailsFetched);
+    on<PokemonPaletteColor>(_pokemonPaletteColor);
   }
 
   Future<void> _onPokemonDetailsFetched(
@@ -44,5 +46,19 @@ class PokemonDetailsBloc
         ));
       }
     });
+  }
+
+  FutureOr<void> _pokemonPaletteColor(
+      PokemonPaletteColor event, Emitter<PokemonDetailsStates> emit) async {
+    emit(state.copyWith(
+      color: await _getImagePalette(event.imageProvider),
+      pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
+    ));
+  }
+
+  Future<Color?> _getImagePalette(ImageProvider imageProvider) async {
+    final PaletteGenerator paletteGenerator =
+        await PaletteGenerator.fromImageProvider(imageProvider);
+    return paletteGenerator.dominantColor?.color;
   }
 }

@@ -85,14 +85,19 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                 CachedNetworkImage(
                   imageUrl:
                       pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+                  imageBuilder: (context, imageProvider) {
+                    //getImagePalette(imageProvider);
+                    _pokemonDetailsBloc
+                        .add(PokemonPaletteColor(imageProvider: imageProvider));
+                    return Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                   placeholder: (context, url) =>
                       const Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => const Icon(Icons.image),
@@ -132,17 +137,17 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                     curve: Curves.easeInOut,
                     tween: Tween<double>(
                       begin: 0,
-                      end: (pokemonDetailsDataModel.statsEntity?.baseStat ?? 0) /
-                          100,
+                      end:
+                          (pokemonDetailsDataModel.statsEntity?.baseStat ?? 0) /
+                              100,
                     ),
-                    builder: (context, value, _) =>
-                        LinearProgressIndicator(
-                          minHeight: 30,
-                          borderRadius: const BorderRadius.all(Radius.circular(15)),
-                          value:
-                          value,
-                          backgroundColor: Colors.grey,
-                        ),
+                    builder: (context, value, _) => LinearProgressIndicator(
+                      minHeight: 30,
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      value: value,
+                      color: _pokemonDetailsBloc.state.color,
+                      backgroundColor: Colors.grey,
+                    ),
                   ),
                 ),
               ],

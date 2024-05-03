@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_details_entity.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
 import 'package:pokedex_flutter/data/models/pokemon_details_data_model/pokemon_details_data_model.dart';
@@ -13,11 +14,13 @@ final class PokemonDetailsStates {
   String? error;
   int? statusCode;
   List<PokemonDetailsDataModel> pokemonDetailsDataModelList;
+  Color? color;
   PokemonDetailsStatesEnum pokemonDetailsStatesEnum;
 
   PokemonDetailsStates({
     this.error,
     this.statusCode,
+    this.color,
     this.pokemonDetailsDataModelList = const [],
     this.pokemonDetailsStatesEnum = PokemonDetailsStatesEnum.initial,
   });
@@ -25,12 +28,14 @@ final class PokemonDetailsStates {
   PokemonDetailsStates copyWith({
     String? error,
     int? statusCode,
+    Color? color,
     List<PokemonDetailsDataModel>? pokemonDetailsDataModelList,
     required PokemonDetailsStatesEnum pokemonDetailsStatesEnum,
   }) {
     return PokemonDetailsStates(
       error: error ?? this.error,
       statusCode: statusCode ?? this.statusCode,
+      color: color ?? this.color,
       pokemonDetailsDataModelList:
           pokemonDetailsDataModelList ?? this.pokemonDetailsDataModelList,
       pokemonDetailsStatesEnum: pokemonDetailsStatesEnum,
