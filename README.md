@@ -3,7 +3,7 @@
 This Pokedex Flutter project show a list of Pokemons and Details Screen for each Pokemon and stats.
 
 # The Project Contain the following technologies and libraries
-Dio Network Manager - https://pub.dev/packages/dio
+Dio Network Manager - https://pub.dev/packages/dio  <br />
 Drift Database - https://drift.simonbinder.eu/docs/getting-started/ - https://pub.dev/packages/drift  <br />
 Bloc Patterns to handle the states using single  <br />
 state - https://bloclibrary.dev/getting-started/ - https://pub.dev/packages/flutter_bloc  <br />
