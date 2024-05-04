@@ -22,7 +22,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
 
   _init(BuildContext context) {
     _pokemonListBloc.add(PokemonListFetchData(url: Api.pokemonUrl));
-    //_pokemonListBloc.add(Offline());
+    _pokemonListBloc.add(Offline());
   }
 
   @override
