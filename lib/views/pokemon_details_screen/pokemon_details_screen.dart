@@ -102,54 +102,57 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _imageAndNameView(PokemonDetailsDataModel pokemonDetailsDataModel) {
-    return Column(
-      children: [
-        CachedNetworkImage(
-          imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
-          imageBuilder: (context, imageProvider) {
-            _pokemonDetailsBloc
-                .add(PokemonPaletteColor(imageProvider: imageProvider));
-            return Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+    return Hero(
+      tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+      child: Column(
+        children: [
+          CachedNetworkImage(
+            imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+            imageBuilder: (context, imageProvider) {
+              _pokemonDetailsBloc
+                  .add(PokemonPaletteColor(imageProvider: imageProvider));
+              return Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            },
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => const Icon(Icons.image),
+            height: 150,
+            width: 150,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                pokemonDetailsDataModel.pokemonEntity?.name ?? "",
+                style: const TextStyle(
+                  fontSize: 17,
+                  color: Colors.white,
                 ),
               ),
-            );
-          },
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) => const Icon(Icons.image),
-          height: 150,
-          width: 150,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              pokemonDetailsDataModel.pokemonEntity?.name ?? "",
-              style: const TextStyle(
-                fontSize: 17,
-                color: Colors.white,
+              const SizedBox(
+                width: 5,
               ),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg ",
-              style: const TextStyle(
-                fontSize: 17,
-                color: Colors.white,
+              Text(
+                " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg ",
+                style: const TextStyle(
+                  fontSize: 17,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
-        )
-      ],
+            ],
+          )
+        ],
+      ),
     );
   }
 

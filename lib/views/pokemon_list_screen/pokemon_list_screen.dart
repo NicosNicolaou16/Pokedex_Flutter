@@ -106,37 +106,40 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   }
 
   Widget _cardPokemonImage(PokemonEntity pokemonEntity) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => PokemonDetailsScreen(
-                    pokemonEntity: pokemonEntity,
-                  )),
-        );
-      },
-      child: Card(
-        elevation: 9,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        color: Colors.green,
-        child: CachedNetworkImage(
-          imageUrl: pokemonEntity.imageUrl ?? "",
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
+    return Hero(
+      tag: pokemonEntity.imageUrl ?? "",
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PokemonDetailsScreen(
+                      pokemonEntity: pokemonEntity,
+                    )),
+          );
+        },
+        child: Card(
+          elevation: 9,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          color: Colors.green,
+          child: CachedNetworkImage(
+            imageUrl: pokemonEntity.imageUrl ?? "",
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => const Icon(Icons.image),
+            height: 150,
+            width: 150,
           ),
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) => const Icon(Icons.image),
-          height: 150,
-          width: 150,
         ),
       ),
     );

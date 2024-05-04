@@ -62,8 +62,8 @@ class StatsEntity {
   static Future<List<StatsEntity>> saveStats(
       List<StatsEntity> statsList, String pokemonName) async {
     AppDb appDb = getIt.get<AppDb>();
-    await Future.forEach(statsList, (stat) {
-      appDb
+    await Future.forEach(statsList, (stat) async {
+      await appDb
           .into(appDb.stats)
           .insertOnConflictUpdate(stat.toCompanion(pokemonName));
     });
