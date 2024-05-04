@@ -14,3 +14,11 @@ class PokemonPaletteColor extends PokemonDetailsEvents {
 
   PokemonPaletteColor({required this.imageProvider});
 }
+
+class Offline extends PokemonDetailsEvents {
+  final PokemonEntity pokemonEntity;
+
+  Offline({
+    required this.pokemonEntity,
+  });
+}

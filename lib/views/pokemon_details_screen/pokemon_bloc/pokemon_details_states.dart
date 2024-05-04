@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/data/database/entities/pokemon_details_entity.dart';
-import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
 import 'package:pokedex_flutter/data/models/pokemon_details_data_model/pokemon_details_data_model.dart';
 
 enum PokemonDetailsStatesEnum {

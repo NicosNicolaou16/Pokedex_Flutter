@@ -13,17 +13,16 @@ import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemo
 class PokemonDetailsBloc
     extends Bloc<PokemonDetailsEvents, PokemonDetailsStates> {
   final PokemonDetailsRepository _pokemonDetailsRepository =
-      getIt.get<PokemonDetailsRepository>();
+  getIt.get<PokemonDetailsRepository>();
 
   PokemonDetailsBloc() : super(PokemonDetailsStates()) {
     on<PokemonDetailsFetchData>(_onPokemonDetailsFetched);
     on<PokemonPaletteColor>(_pokemonPaletteColor);
+    on<Offline>(_offline);
   }
 
-  Future<void> _onPokemonDetailsFetched(
-    PokemonDetailsFetchData event,
-    Emitter<PokemonDetailsStates> emit,
-  ) async {
+  Future<void> _onPokemonDetailsFetched(PokemonDetailsFetchData event,
+      Emitter<PokemonDetailsStates> emit,) async {
     emit(state.copyWith(
         pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loading));
     await _pokemonDetailsRepository
@@ -33,8 +32,8 @@ class PokemonDetailsBloc
         emit(state.copyWith(
             pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
             pokemonDetailsDataModelList:
-                await PokemonDetailsDataModel.createPokemonDetailsDataModel(
-                    event.pokemonEntity)));
+            await PokemonDetailsDataModel.createPokemonDetailsDataModel(
+                event.pokemonEntity)));
       } else {
         emit(state.copyWith(
           error: ErrorHandling.getErrorMessage(
@@ -48,8 +47,8 @@ class PokemonDetailsBloc
     });
   }
 
-  FutureOr<void> _pokemonPaletteColor(
-      PokemonPaletteColor event, Emitter<PokemonDetailsStates> emit) async {
+  FutureOr<void> _pokemonPaletteColor(PokemonPaletteColor event,
+      Emitter<PokemonDetailsStates> emit) async {
     emit(state.copyWith(
       color: await _getImagePalette(event.imageProvider),
       pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
@@ -58,7 +57,16 @@ class PokemonDetailsBloc
 
   Future<Color?> _getImagePalette(ImageProvider imageProvider) async {
     final PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(imageProvider);
+    await PaletteGenerator.fromImageProvider(imageProvider);
     return paletteGenerator.dominantColor?.color;
+  }
+
+  FutureOr<void> _offline(Offline event,
+      Emitter<PokemonDetailsStates> emit) async {
+    emit(state.copyWith(
+      pokemonDetailsDataModelList:
+      await PokemonDetailsDataModel.createPokemonDetailsDataModel(
+          event.pokemonEntity),
+      pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,));
   }
 }
