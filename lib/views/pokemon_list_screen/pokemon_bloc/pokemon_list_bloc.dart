@@ -10,6 +10,7 @@ import 'package:pokedex_flutter/views/pokemon_list_screen/pokemon_bloc/pokemon_l
 
 class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
   final PokemonRepository _pokemonRepository = getIt.get<PokemonRepository>();
+  List<PokemonEntity> _pokemonEntityList = [];
 
   PokemonListBloc() : super(PokemonStates()) {
     on<PokemonListFetchData>(_onPokemonListFetched);
@@ -20,14 +21,25 @@ class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
     PokemonListFetchData event,
     Emitter<PokemonStates> emit,
   ) async {
+    if (event.url == null) return;
     emit(state.copyWith(pokemonStatesEnum: PokemonStatesEnum.loading));
     await _pokemonRepository
-        .requestToGetPokemon("")
+        .requestToGetPokemon(
+      event.url!,
+      event.isFirstTime,
+    )
         .then((pokemonServiceResponse) async {
       if (pokemonServiceResponse.pokemonEntityList != null) {
+        if (pokemonServiceResponse.nextUrl == null) {
+          _pokemonEntityList = pokemonServiceResponse.pokemonEntityList!;
+        } else {
+          _pokemonEntityList += pokemonServiceResponse.pokemonEntityList!;
+        }
         emit(state.copyWith(
-            pokemonStatesEnum: PokemonStatesEnum.loaded,
-            pokemonEntityList: pokemonServiceResponse.pokemonEntityList));
+          nextUrl: pokemonServiceResponse.nextUrl,
+          pokemonEntityList: _pokemonEntityList,
+          pokemonStatesEnum: PokemonStatesEnum.loaded,
+        ));
       } else {
         emit(state.copyWith(
           error: ErrorHandling.getErrorMessage(
@@ -44,7 +56,8 @@ class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
   FutureOr<void> _offline(Offline event, Emitter<PokemonStates> emit) async {
     List<PokemonEntity> pokemonEntityList = await PokemonEntity.getAllPokemon();
     emit(state.copyWith(
-        pokemonStatesEnum: PokemonStatesEnum.loaded,
-        pokemonEntityList: pokemonEntityList));
+      pokemonEntityList: pokemonEntityList,
+      pokemonStatesEnum: PokemonStatesEnum.loaded,
+    ));
   }
 }

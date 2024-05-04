@@ -59,12 +59,19 @@ class PokemonEntity {
     );
   }
 
+  static Future<void> deleteAllPokemon(AppDb appDb) async {
+    await appDb.delete(appDb.pokemon).go();
+  }
+
   static Future<List<PokemonEntity>> savePokemonList(
-      List<PokemonEntity> pokemonList) async {
+      List<PokemonEntity> pokemonList, bool isFirstTime) async {
     AppDb appDb = getIt.get<AppDb>();
-    await Future.forEach(pokemonList, (pokemon) {
+    if (isFirstTime) {
+      deleteAllPokemon(appDb);
+    }
+    await Future.forEach(pokemonList, (pokemon) async {
       _buildImageUrl(pokemon);
-      appDb.into(appDb.pokemon).insertOnConflictUpdate(
+      await appDb.into(appDb.pokemon).insertOnConflictUpdate(
           pokemon.toCompanion(pokemon.imageUrl, pokemon.order));
     });
 
@@ -72,7 +79,7 @@ class PokemonEntity {
   }
 
   static Future<void> _buildImageUrl(PokemonEntity pokemonEntity) async {
-    RegExp exp = RegExp(r'\d');
+    RegExp exp = RegExp(r'\d+');
     Iterable<Match>? matches = exp.allMatches(pokemonEntity.url ?? "");
     String? pokemonIdAsString = matches.map((e) => e.group(0)!).lastOrNull;
     if (pokemonIdAsString != null &&
@@ -91,8 +98,9 @@ class PokemonEntity {
 
   static Future<List<PokemonEntity>> getAllPokemon() async {
     AppDb appDb = getIt.get<AppDb>();
-    List<PokemonEntity>? pokemonEntityList =
-        await (appDb.select(appDb.pokemon)).get();
+    List<PokemonEntity>? pokemonEntityList = await (appDb.select(appDb.pokemon)
+          ..orderBy([(t) => OrderingTerm(expression: t.order)]))
+        .get();
     return pokemonEntityList;
   }
 }

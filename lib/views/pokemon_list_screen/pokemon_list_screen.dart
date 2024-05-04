@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
 import 'package:pokedex_flutter/utils/alerts_dialog/alerts_dialog.dart';
+import 'package:pokedex_flutter/utils/apis/apis.dart';
 import 'package:pokedex_flutter/utils/get_it_dependencies_injection.dart';
 import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_details_screen.dart';
 import 'package:pokedex_flutter/views/pokemon_list_screen/pokemon_bloc/pokemon_list_bloc.dart';
@@ -20,15 +21,18 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   final PokemonListBloc _pokemonListBloc = getIt.get<PokemonListBloc>();
 
   _init(BuildContext context) {
-    _pokemonListBloc.add(PokemonListFetchData());
-    _pokemonListBloc.add(Offline());
+    _pokemonListBloc.add(PokemonListFetchData(url: Api.pokemonUrl));
+    //_pokemonListBloc.add(Offline());
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black12,
         appBar: AppBar(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.black,
           centerTitle: true,
           elevation: 0,
           title: const Text(
@@ -59,11 +63,20 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
     if (state.pokemonStatesEnum == PokemonStatesEnum.initial) {
       _init(context);
     } else if (state.pokemonStatesEnum == PokemonStatesEnum.loading) {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Stack(
+        children: [
+          _mainView(context),
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ],
       );
     }
-    return _mainView(context);
+    return Stack(
+      children: [
+        _mainView(context),
+      ],
+    );
   }
 
   Widget _mainView(BuildContext context) {
@@ -78,7 +91,16 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
       itemBuilder: (context, index) {
         PokemonEntity pokemonEntity =
             _pokemonListBloc.state.pokemonEntityList![index];
-        return _cardPokemonImage(pokemonEntity);
+        if (_pokemonListBloc.state.nextUrl != null &&
+            index == _pokemonListBloc.state.pokemonEntityList!.length - 1) {
+          _pokemonListBloc.add(PokemonListFetchData(
+              url: _pokemonListBloc.state.nextUrl, isFirstTime: false));
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return _cardPokemonImage(pokemonEntity);
+        }
       },
     );
   }

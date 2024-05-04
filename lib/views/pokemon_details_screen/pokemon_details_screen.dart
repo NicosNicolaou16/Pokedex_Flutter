@@ -32,13 +32,17 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black12,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.black,
           title: const Text(
             "Pokemon Details",
             style: TextStyle(
               fontSize: 21,
+              color: Colors.white,
             ),
           ),
         ),
@@ -65,11 +69,20 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
       _init(context);
     } else if (state.pokemonDetailsStatesEnum ==
         PokemonDetailsStatesEnum.loading) {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Stack(
+        children: [
+          _mainView(context),
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ],
       );
     }
-    return _mainView(context);
+    return Stack(
+      children: [
+        _mainView(context),
+      ],
+    );
   }
 
   Widget _mainView(BuildContext context) {
@@ -117,13 +130,23 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(pokemonDetailsDataModel.pokemonEntity?.name ?? ""),
+            Text(
+              pokemonDetailsDataModel.pokemonEntity?.name ?? "",
+              style: const TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            ),
             const SizedBox(
               width: 5,
             ),
             Text(
-                "${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString()}Kg " ??
-                    ""),
+              " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg ",
+              style: const TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            ),
           ],
         )
       ],
@@ -152,7 +175,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
               borderRadius: const BorderRadius.all(Radius.circular(15)),
               value: value,
               color: _pokemonDetailsBloc.state.color,
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.grey.withOpacity(0.3),
             ),
           ),
         ),

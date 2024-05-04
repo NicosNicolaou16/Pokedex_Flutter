@@ -22,7 +22,7 @@ class PokemonService {
   Future<PokemonServiceResponse> requestToGetPokemon(String url) async {
     return getIt
         .get<Dio>()
-        .get("https://pokeapi.co/api/v2/pokemon")
+        .get(url)
         .then((response) {
       if (response.statusCode! == 200 || response.statusCode! == 201) {
         return PokemonServiceResponse(

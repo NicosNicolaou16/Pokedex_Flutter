@@ -37,12 +37,16 @@ class PokemonDetailsEntity {
     );
   }
 
+  static Future<void> deleteAllPokemonDetails(AppDb appDb) async {
+    await appDb.delete(appDb.pokemonDetails).go();
+  }
+
   static Future<PokemonDetailsEntity> savePokemonDetails(
     PokemonDetailsEntity pokemonDetailsEntity,
   ) async {
     AppDb appDb = getIt.get<AppDb>();
     await StatsEntity.deleteAllStats(appDb);
-    appDb
+    await appDb
         .into(appDb.pokemonDetails)
         .insertOnConflictUpdate(pokemonDetailsEntity.toCompanion());
     if (pokemonDetailsEntity.statsEntityList != null &&
