@@ -21,6 +21,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
 
   _init(BuildContext context) {
     _pokemonListBloc.add(PokemonListFetchData());
+    _pokemonListBloc.add(Offline());
   }
 
   @override
@@ -77,40 +78,45 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
       itemBuilder: (context, index) {
         PokemonEntity pokemonEntity =
             _pokemonListBloc.state.pokemonEntityList![index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PokemonDetailsScreen(
-                        pokemonEntity: pokemonEntity,
-                      )),
-            );
-          },
-          child: Card(
-            elevation: 9,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            color: Colors.green,
-            child: CachedNetworkImage(
-              imageUrl: pokemonEntity.imageUrl ?? "",
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => const Icon(Icons.image),
-              height: 150,
-              width: 150,
-            ),
-          ),
+        return _cardPokemonImage(pokemonEntity);
+      },
+    );
+  }
+
+  Widget _cardPokemonImage(PokemonEntity pokemonEntity) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PokemonDetailsScreen(
+                    pokemonEntity: pokemonEntity,
+                  )),
         );
       },
+      child: Card(
+        elevation: 9,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        color: Colors.green,
+        child: CachedNetworkImage(
+          imageUrl: pokemonEntity.imageUrl ?? "",
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          placeholder: (context, url) =>
+              const Center(child: CircularProgressIndicator()),
+          errorWidget: (context, url, error) => const Icon(Icons.image),
+          height: 150,
+          width: 150,
+        ),
+      ),
     );
   }
 }
