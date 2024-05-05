@@ -25,3 +25,8 @@ Hero Widget - https://docs.flutter.dev/ui/animations/hero-animations  <br />
 
 Flutter SDK version: 3.19.6 <br />
 Dart Version: 3.3.4 <br />
+
+# Feeds/Urls/End Point (parsing some data from the response)
+## (Links References for Ends Points)
+https://pokeapi.co/ <br />
+https://github.com/PokeAPI/sprites (GitHub) <br />
