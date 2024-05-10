@@ -67,7 +67,7 @@ class PokemonEntity {
       List<PokemonEntity> pokemonList, bool isFirstTime) async {
     AppDb appDb = getIt.get<AppDb>();
     if (isFirstTime) {
-      deleteAllPokemon(appDb);
+      await deleteAllPokemon(appDb);
     }
     await Future.forEach(pokemonList, (pokemon) async {
       _buildImageUrl(pokemon);

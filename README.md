@@ -16,8 +16,9 @@ Hero Widget - https://docs.flutter.dev/ui/animations/hero-animations  <br />
 # Examples
 
 <p align="left">
-  <a title="simulator_image"><img src="examples/Screenshot_20240504_235805.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240504_235821.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240511_014351.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240511_014400.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240511_014411.png" height="500" width="200"></a>
   <a title="simulator_image"><img src="examples/example_gif.gif" height="500" width="200"></a>
 </p>
 

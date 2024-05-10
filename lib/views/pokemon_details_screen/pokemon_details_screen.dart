@@ -143,14 +143,14 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                 width: 5,
               ),
               Text(
-                " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg ",
+                " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
                 style: const TextStyle(
                   fontSize: 17,
                   color: Colors.white,
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -162,7 +162,12 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 15.0),
-          child: Text(pokemonDetailsDataModel.statsEntity?.statName ?? ""),
+          child: Text(
+            pokemonDetailsDataModel.statsEntity?.statName ?? "",
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
