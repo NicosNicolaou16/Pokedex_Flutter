@@ -21,8 +21,8 @@ Offline Support  <br />
 </p>
 
 # Versioning
-Flutter SDK version: 3.19.6 <br />
-Dart Version: 3.3.4 <br />
+Flutter SDK version: 3.22.0 <br />
+Dart Version: 3.4.0 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 ## (Links References for Ends Points)
