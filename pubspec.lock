@@ -563,6 +563,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.1"
+  percentages_with_animation:
+    dependency: "direct main"
+    description:
+      name: percentages_with_animation
+      sha256: "1ed7d450144443b420fc83606343574c384447aa16f6d6c526ad6f53e166e227"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5+3"
   platform:
     dependency: transitive
     description:
