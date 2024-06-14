@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:percentages_with_animation/percentages_with_animation.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
 import 'package:pokedex_flutter/data/models/pokemon_details_data_model/pokemon_details_data_model.dart';
 import 'package:pokedex_flutter/utils/alerts_dialog/alerts_dialog.dart';
@@ -171,19 +172,24 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: TweenAnimationBuilder<double>(
-            duration: const Duration(milliseconds: 1000),
-            curve: Curves.easeInOut,
-            tween: Tween<double>(
-              begin: 0,
-              end: (pokemonDetailsDataModel.statsEntity?.baseStat ?? 0) / 100,
+          child: LinearPercentage(
+            currentPercentage:
+                pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ?? 0,
+            maxPercentage:
+                (pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ??
+                            0) >
+                        100
+                    ? 300
+                    : 100,
+            backgroundHeight: 30,
+            percentageHeight: 30,
+            backgroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey.withOpacity(0.3),
             ),
-            builder: (context, value, _) => LinearProgressIndicator(
-              minHeight: 30,
-              borderRadius: const BorderRadius.all(Radius.circular(15)),
-              value: value,
+            percentageDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
               color: _pokemonDetailsBloc.state.color,
-              backgroundColor: Colors.grey.withOpacity(0.3),
             ),
           ),
         ),
