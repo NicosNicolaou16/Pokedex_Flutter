@@ -10,6 +10,7 @@ Cached Network Image - https://pub.dev/packages/cached_network_image  <br />
 Palette (Using the Pokemon Color to paint the Linear Indicator with the same color) - https://pub.dev/packages/palette_generator  <br />
 Get It (Dependencies Injection) - https://pub.dev/packages/get_it  <br />
 Hero Widget - https://docs.flutter.dev/ui/animations/hero-animations  <br />
+Percentage for statistics is using my library - https://pub.dev/packages/percentages_with_animation  <br />
 Offline Support  <br />
 
 # Examples
@@ -21,8 +22,8 @@ Offline Support  <br />
 </p>
 
 # Versioning
-Flutter SDK version: 3.22.1 <br />
-Dart Version: 3.4.1 <br />
+Flutter SDK version: 3.22.2 <br />
+Dart Version: 3.4.3 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 ## (Links References for Ends Points)
