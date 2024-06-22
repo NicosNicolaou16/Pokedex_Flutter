@@ -527,10 +527,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: "9c96da072b421e98183f9ea7464898428e764bc0ce5567f27ec8693442e72514"
+      sha256: bca87b0165ffd7cdb9cad8edd22d18d2201e886d9a9f19b4fb3452ea7df3a72a
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.5"
+    version: "2.2.6"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -567,10 +567,10 @@ packages:
     dependency: "direct main"
     description:
       name: percentages_with_animation
-      sha256: "1ed7d450144443b420fc83606343574c384447aa16f6d6c526ad6f53e166e227"
+      sha256: "28abbc80bce4073f2f28786cdd13a5e9306a0989fe63853e01f785d3be0e5590"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.5+3"
+    version: "0.0.8"
   platform:
     dependency: transitive
     description:
@@ -708,10 +708,10 @@ packages:
     dependency: "direct main"
     description:
       name: sqlite3_flutter_libs
-      sha256: "9f89a7e7dc36eac2035808427eba1c3fbd79e59c3a22093d8dace6d36b1fe89e"
+      sha256: "62bbb4073edbcdf53f40c80775f33eea01d301b7b81417e5b3fb7395416258c1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.23"
+    version: "0.5.24"
   sqlparser:
     dependency: transitive
     description:
