@@ -22,7 +22,7 @@ Offline Support  <br />
 </p>
 
 # Versioning
-Flutter SDK version: 3.22.2 <br />
+Flutter SDK version: 3.22.3 <br />
 Dart Version: 3.4.3 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
