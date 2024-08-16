@@ -15,17 +15,20 @@ Offline Support  <br />
 
 # Examples
 <p align="left">
-  <a title="simulator_image"><img src="examples/Screenshot_20240511_014351.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240511_014400.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240511_014411.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/example_gif.gif" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240817_012140.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240817_012157.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240817_012221.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/example_gif1.gif" height="500" width="200"></a>
 </p>
 
 # Versioning
-Flutter SDK version: 3.22.3 <br />
-Dart Version: 3.4.3 <br />
+Flutter SDK version: 3.24.0 <br />
+Dart Version: 3.5.0 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 ## (Links References for Ends Points)
 https://pokeapi.co/ <br />
 https://github.com/PokeAPI/sprites (GitHub) <br />
+
+# References
+https://dribbble.com/shots/6540871-Pokedex-App# - Get some UI - not completely use it (CHECK THE LINK FOR THE DESIGN) <br />
