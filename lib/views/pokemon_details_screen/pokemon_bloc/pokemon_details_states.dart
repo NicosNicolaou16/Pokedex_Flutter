@@ -18,7 +18,7 @@ final class PokemonDetailsStates {
   PokemonDetailsStates({
     this.error,
     this.statusCode,
-    this.color,
+    this.color = Colors.black,
     this.pokemonDetailsDataModelList = const [],
     this.pokemonDetailsStatesEnum = PokemonDetailsStatesEnum.initial,
   });

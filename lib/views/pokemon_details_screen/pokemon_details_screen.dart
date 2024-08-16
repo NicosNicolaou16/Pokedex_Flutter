@@ -5,6 +5,7 @@ import 'package:percentages_with_animation/percentages_with_animation.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
 import 'package:pokedex_flutter/data/models/pokemon_details_data_model/pokemon_details_data_model.dart';
 import 'package:pokedex_flutter/utils/alerts_dialog/alerts_dialog.dart';
+import 'package:pokedex_flutter/utils/extensions/extensions.dart';
 import 'package:pokedex_flutter/utils/get_it_dependencies_injection.dart';
 import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemon_details_bloc.dart';
 import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemon_details_events.dart';
@@ -32,34 +33,18 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black12,
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.black,
-          title: const Text(
-            "Pokemon Details",
-            style: TextStyle(
-              fontSize: 21,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        body: BlocProvider(
-          create: (_) => _pokemonDetailsBloc,
-          child: BlocConsumer<PokemonDetailsBloc, PokemonDetailsStates>(
-            listener: (context, state) {
-              if (state.pokemonDetailsStatesEnum ==
-                  PokemonDetailsStatesEnum.error) {
-                AlertsDialog.showAlertDialog(state.error ?? "", context);
-              }
-            },
-            builder: (context, state) {
-              return _states(state, context);
-            },
-          ),
+      child: BlocProvider(
+        create: (_) => _pokemonDetailsBloc,
+        child: BlocConsumer<PokemonDetailsBloc, PokemonDetailsStates>(
+          listener: (context, state) {
+            if (state.pokemonDetailsStatesEnum ==
+                PokemonDetailsStatesEnum.error) {
+              AlertsDialog.showAlertDialog(state.error ?? "", context);
+            }
+          },
+          builder: (context, state) {
+            return _states(state, context);
+          },
         ),
       ),
     );
@@ -87,73 +72,113 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _mainView(BuildContext context) {
-    return ListView.builder(
-        itemCount:
-            _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length ?? 0,
-        itemBuilder: (context, index) {
-          PokemonDetailsDataModel pokemonDetailsDataModel =
-              _pokemonDetailsBloc.state.pokemonDetailsDataModelList[index];
-          if (pokemonDetailsDataModel.pokemonDetailsDataModelViewTypes ==
-              PokemonDetailsDataModelViewTypes.imageWithNameViewType) {
-            return _imageAndNameView(pokemonDetailsDataModel);
-          } else {
-            return _statsView(pokemonDetailsDataModel);
-          }
-        });
+    return Scaffold(
+      backgroundColor: Colors.black12,
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        foregroundColor: Colors.white,
+        backgroundColor: _pokemonDetailsBloc.state.color,
+        title: const Text(
+          "Pokemon Details",
+          style: TextStyle(
+            fontSize: 21,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      body: ListView.builder(
+          itemCount:
+              _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
+          itemBuilder: (context, index) {
+            PokemonDetailsDataModel pokemonDetailsDataModel =
+                _pokemonDetailsBloc.state.pokemonDetailsDataModelList[index];
+            if (pokemonDetailsDataModel.pokemonDetailsDataModelViewTypes ==
+                PokemonDetailsDataModelViewTypes.imageWithNameViewType) {
+              return _imageAndNameView(pokemonDetailsDataModel);
+            } else {
+              return _statsView(pokemonDetailsDataModel);
+            }
+          }),
+    );
   }
 
   Widget _imageAndNameView(PokemonDetailsDataModel pokemonDetailsDataModel) {
-    return Hero(
-      tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
-      child: Column(
-        children: [
-          CachedNetworkImage(
-            imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
-            imageBuilder: (context, imageProvider) {
-              _pokemonDetailsBloc
-                  .add(PokemonPaletteColor(imageProvider: imageProvider));
-              return Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
+    return Stack(
+      children: [
+        Container(
+          height: 200,
+          width: double.infinity,
+          color: _pokemonDetailsBloc.state.color,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 130.0),
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
                 ),
-              );
-            },
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(Icons.image),
-            height: 150,
-            width: 150,
+              ),
+            ),
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        ),
+        Hero(
+          tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+          child: Column(
             children: [
-              Text(
-                pokemonDetailsDataModel.pokemonEntity?.name ?? "",
-                style: const TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                ),
+              CachedNetworkImage(
+                imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+                imageBuilder: (context, imageProvider) {
+                  _pokemonDetailsBloc
+                      .add(PokemonPaletteColor(imageProvider: imageProvider));
+                  return Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.image),
+                height: 150,
+                width: 150,
               ),
               const SizedBox(
-                width: 5,
+                height: 5,
               ),
-              Text(
-                " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
-                style: const TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    pokemonDetailsDataModel.pokemonEntity?.name
+                            ?.upperCaseFirstLetter() ??
+                        "",
+                    style: const TextStyle(
+                      fontSize: 19,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -164,10 +189,10 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 15.0),
           child: Text(
-            pokemonDetailsDataModel.statsEntity?.statName ?? "",
-            style: const TextStyle(
-              color: Colors.white,
-            ),
+            pokemonDetailsDataModel.statsEntity?.statName
+                    ?.upperCaseFirstLetter() ??
+                "",
+            style: const TextStyle(color: Colors.white, fontSize: 19),
           ),
         ),
         Padding(
@@ -175,12 +200,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
           child: LinearPercentage(
             currentPercentage:
                 pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ?? 0,
-            maxPercentage:
-                (pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ??
-                            0) >
-                        100
-                    ? 300
-                    : 100,
+            maxPercentage: pokemonDetailsDataModel.maxValue?.toDouble() ?? 0,
             backgroundHeight: 30,
             percentageHeight: 30,
             backgroundDecoration: BoxDecoration(
@@ -190,6 +210,11 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
             percentageDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: _pokemonDetailsBloc.state.color,
+            ),
+            leftRightText: LeftRightText.leftOnly,
+            leftTextStyle: TextStyle(
+              color: _pokemonDetailsBloc.state.color,
+              fontSize: 19,
             ),
           ),
         ),
