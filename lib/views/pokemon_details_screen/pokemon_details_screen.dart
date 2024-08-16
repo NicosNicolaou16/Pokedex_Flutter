@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percentages_with_animation/percentages_with_animation.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
@@ -72,34 +73,39 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _mainView(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black12,
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        foregroundColor: Colors.white,
-        backgroundColor: _pokemonDetailsBloc.state.color,
-        title: const Text(
-          "Pokemon Details",
-          style: TextStyle(
-            fontSize: 21,
-            color: Colors.white,
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        statusBarColor: _pokemonDetailsBloc.state.color,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.black12,
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          foregroundColor: Colors.white,
+          backgroundColor: _pokemonDetailsBloc.state.color,
+          title: const Text(
+            "Pokemon Details",
+            style: TextStyle(
+              fontSize: 21,
+              color: Colors.white,
+            ),
           ),
         ),
+        body: ListView.builder(
+            itemCount:
+                _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
+            itemBuilder: (context, index) {
+              PokemonDetailsDataModel pokemonDetailsDataModel =
+                  _pokemonDetailsBloc.state.pokemonDetailsDataModelList[index];
+              if (pokemonDetailsDataModel.pokemonDetailsDataModelViewTypes ==
+                  PokemonDetailsDataModelViewTypes.imageWithNameViewType) {
+                return _imageAndNameView(pokemonDetailsDataModel);
+              } else {
+                return _statsView(pokemonDetailsDataModel);
+              }
+            }),
       ),
-      body: ListView.builder(
-          itemCount:
-              _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
-          itemBuilder: (context, index) {
-            PokemonDetailsDataModel pokemonDetailsDataModel =
-                _pokemonDetailsBloc.state.pokemonDetailsDataModelList[index];
-            if (pokemonDetailsDataModel.pokemonDetailsDataModelViewTypes ==
-                PokemonDetailsDataModelViewTypes.imageWithNameViewType) {
-              return _imageAndNameView(pokemonDetailsDataModel);
-            } else {
-              return _statsView(pokemonDetailsDataModel);
-            }
-          }),
     );
   }
 

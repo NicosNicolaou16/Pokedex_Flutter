@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
@@ -27,32 +28,37 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black12,
-        appBar: AppBar(
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.black,
-          centerTitle: true,
-          elevation: 0,
-          title: const Text(
-            "Pokemon List",
-            style: TextStyle(
-              fontSize: 21,
+    return AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+      ),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.black12,
+          appBar: AppBar(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.black,
+            centerTitle: true,
+            elevation: 0,
+            title: const Text(
+              "Pokemon List",
+              style: TextStyle(
+                fontSize: 21,
+              ),
             ),
           ),
-        ),
-        body: BlocProvider(
-          create: (_) => _pokemonListBloc,
-          child: BlocConsumer<PokemonListBloc, PokemonStates>(
-            listener: (context, state) {
-              if (state.pokemonStatesEnum == PokemonStatesEnum.error) {
-                AlertsDialog.showAlertDialog(state.error ?? "", context);
-              }
-            },
-            builder: (context, state) {
-              return _states(state, context);
-            },
+          body: BlocProvider(
+            create: (_) => _pokemonListBloc,
+            child: BlocConsumer<PokemonListBloc, PokemonStates>(
+              listener: (context, state) {
+                if (state.pokemonStatesEnum == PokemonStatesEnum.error) {
+                  AlertsDialog.showAlertDialog(state.error ?? "", context);
+                }
+              },
+              builder: (context, state) {
+                return _states(state, context);
+              },
+            ),
           ),
         ),
       ),

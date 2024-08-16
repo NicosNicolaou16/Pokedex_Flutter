@@ -33,10 +33,13 @@ class PokemonDetailsDataModel {
         pokemonDetailsDataModelViewTypes:
             PokemonDetailsDataModelViewTypes.imageWithNameViewType));
 
-    final maxValue = pokemonDetailsEntity?.statsEntityList
-            ?.map((t) => t.baseStat ?? 0)
-            .reduce(max) ??
-        0;
+    int maxValue = 0;
+    if (pokemonDetailsEntity?.statsEntityList?.isNotEmpty == true) {
+      maxValue = pokemonDetailsEntity?.statsEntityList
+              ?.map((t) => t.baseStat ?? 0)
+              .reduce(max) ??
+          0;
+    }
     await Future.forEach(pokemonDetailsEntity?.statsEntityList ?? [], (stat) {
       pokemonDetailsDataModelList.add(PokemonDetailsDataModel(
           statsEntity: stat,
