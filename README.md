@@ -15,10 +15,10 @@ Offline Support  <br />
 
 # Examples
 <p align="left">
-  <a title="simulator_image"><img src="examples/Screenshot_20240511_014351.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240511_014400.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240511_014411.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/example_gif.gif" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240817_012140.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240817_012157.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/Screenshot_20240817_012221.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/example_gif1.gif" height="500" width="200"></a>
 </p>
 
 # Versioning
