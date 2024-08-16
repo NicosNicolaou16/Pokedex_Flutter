@@ -30,14 +30,14 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
+        statusBarColor: Colors.green,
       ),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.black12,
           appBar: AppBar(
             foregroundColor: Colors.white,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.green,
             centerTitle: true,
             elevation: 0,
             title: const Text(
