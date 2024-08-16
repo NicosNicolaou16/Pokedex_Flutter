@@ -29,3 +29,6 @@ Dart Version: 3.5.0 <br />
 ## (Links References for Ends Points)
 https://pokeapi.co/ <br />
 https://github.com/PokeAPI/sprites (GitHub) <br />
+
+# References
+https://dribbble.com/shots/6540871-Pokedex-App# - Get some UI - not completely use it (CHECK THE LINK FOR THE DESIGN) <br />
