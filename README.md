@@ -21,6 +21,10 @@ Offline Support  <br />
   <a title="simulator_image"><img src="examples/example_gif1.gif" height="500" width="200"></a>
 </p>
 
+## Similar project with (Kotlin Language)
+
+https://github.com/NicosNicolaou16/Pokedex_Compose <br />
+
 # Versioning
 Flutter SDK version: 3.24.3 <br />
 Dart Version: 3.5.3 <br />
