@@ -38,27 +38,27 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_bloc: ^8.1.6
   dio: ^5.7.0
-  drift: ^2.20.2
-  sqlite3_flutter_libs: ^0.5.24
-  path_provider: ^2.1.4
+  drift: ^2.21.0
+  sqlite3_flutter_libs: ^0.5.26
+  path_provider: ^2.1.5
   path: ^1.8.3
   cached_network_image: ^3.4.1
-  get_it: ^8.0.0
-  palette_generator: ^0.3.3+4
+  get_it: ^8.0.2
+  palette_generator: ^0.3.3+5
   percentages_with_animation: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  drift_dev: ^2.20.3
-  build_runner: ^2.4.12
+  drift_dev: ^2.21.2
+  build_runner: ^2.4.13
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
