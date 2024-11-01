@@ -26,8 +26,8 @@ Offline Support  <br />
 https://github.com/NicosNicolaou16/Pokedex_Compose <br />
 
 # Versioning
-Flutter SDK version: 3.24.3 <br />
-Dart Version: 3.5.3 <br />
+Flutter SDK version: 3.24.4 <br />
+Dart Version: 3.5.4 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 ## (Links References for Ends Points)
