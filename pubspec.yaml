@@ -45,7 +45,7 @@ dependencies:
   cached_network_image: ^3.4.1
   get_it: ^8.0.2
   palette_generator: ^0.3.3+5
-  percentages_with_animation: ^1.0.1
+  percentages_with_animation: ^1.0.2
 
 dev_dependencies:
   flutter_test:
