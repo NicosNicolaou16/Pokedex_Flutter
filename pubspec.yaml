@@ -41,7 +41,7 @@ dependencies:
   drift: ^2.21.0
   sqlite3_flutter_libs: ^0.5.26
   path_provider: ^2.1.5
-  path: ^1.8.3
+  path: ^1.9.0
   cached_network_image: ^3.4.1
   get_it: ^8.0.2
   palette_generator: ^0.3.3+5
