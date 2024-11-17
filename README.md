@@ -1,4 +1,4 @@
-# pokedex_flutter
+# Pokedex_Flutter
 The Pokedex - Pokemon app is a project that applied some Flutter technologies recommended by Flutter Community such as Bloc Pattern for UI management. Drift SQL Database,
 Dio for Network Manager, Get It for Dependencies Injection and Hero Widget for Shared Elements between the screens.
 
