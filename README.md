@@ -15,8 +15,8 @@ Dio for Network Manager, Get It for Dependencies Injection and Hero Widget for S
 
 # The Project Contain the following technologies and libraries
 [Dio Network Manager](https://pub.dev/packages/dio) is responsible for making requests and retrieving data from the remote server. <br />
-[Drift Database](https://drift.simonbinder.eu/docs/getting-started/) is responsible for saving the retrieved data from the remote server, querying data from the local database, and supporting offline functionality. [Drift Database Documentation](https://pub.dev/packages/drift)  <br />
-[Bloc Patterns using single state](https://pub.dev/packages/flutter_bloc) along with repositories and services, separates business logic, data access, and UI by using streams to handle state and manage data flow. [Bloc Pattern Documentation](https://bloclibrary.dev/getting-started/) <br />
+[Drift Database](https://drift.simonbinder.eu/docs/getting-started/) is responsible for saving the retrieved data from the remote server, querying data from the local database, and supporting offline functionality. ([Drift Database Documentation](https://pub.dev/packages/drift)) <br />
+[Bloc Patterns using single state](https://pub.dev/packages/flutter_bloc) along with repositories and services, separates business logic, data access, and UI by using streams to handle state and manage data flow. ([Bloc Pattern Documentation](https://bloclibrary.dev/getting-started/)) <br />
 [Cached Network Image](https://pub.dev/packages/cached_network_image) is a package that it is responsible for loading the images and supports offline functionality.  <br />
 [Palette](https://pub.dev/packages/palette_generator) is used to retrieve the color from the image; in our case, we are using the Pokémon color to paint the linear indicator with the same color.  <br />
 [Get It (Dependencies Injection)](https://pub.dev/packages/get_it) is a lightweight dependency injection package for Flutter that allows you to register and access services globally, promoting cleaner and more maintainable code.  <br />
