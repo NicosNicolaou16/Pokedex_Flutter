@@ -24,7 +24,7 @@ Hero Widget - https://docs.flutter.dev/ui/animations/hero-animations  <br />
 The percentage for showing the skills of each Pokémon is calculated using the [percentages_with_animation](https://pub.dev/packages/percentages_with_animation) built by @NicosNicolaou16. <br />
 
 # Versioning
-Flutter SDK version: 3.24.4 <br />
+Flutter SDK version: 3.24.5 <br />
 Dart Version: 3.5.4 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
