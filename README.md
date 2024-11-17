@@ -20,7 +20,7 @@ Dio for Network Manager, Get It for Dependencies Injection and Hero Widget for S
 [Cached Network Image](https://pub.dev/packages/cached_network_image) is a package that it is responsible for loading the images and supports offline functionality.  <br />
 [Palette](https://pub.dev/packages/palette_generator) is used to retrieve the color from the image; in our case, we are using the Pokémon color to paint the linear indicator with the same color.  <br />
 [Get It (Dependencies Injection)](https://pub.dev/packages/get_it) is a lightweight dependency injection package for Flutter that allows you to register and access services globally, promoting cleaner and more maintainable code.  <br />
-Hero Widget - https://docs.flutter.dev/ui/animations/hero-animations  <br />
+[Hero Widget](https://docs.flutter.dev/ui/animations/hero-animations) creates a smooth animation for shared elements between screens by linking them with a common tag.  <br />
 The percentage for showing the skills of each Pokémon is calculated using the [percentages_with_animation](https://pub.dev/packages/percentages_with_animation) built by @NicosNicolaou16. <br />
 
 # Versioning
