@@ -20,7 +20,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
-  flutter: 3.24.5
+  flutter: 3.27.1
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -38,14 +38,14 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_bloc: ^8.1.6
   dio: ^5.7.0
-  drift: ^2.21.0
-  sqlite3_flutter_libs: ^0.5.26
+  drift: ^2.23.0
+  sqlite3_flutter_libs: ^0.5.28
   path_provider: ^2.1.5
   path: ^1.9.0
   cached_network_image: ^3.4.1
-  get_it: ^8.0.2
+  get_it: ^8.0.3
   palette_generator: ^0.3.3+5
-  percentages_with_animation: ^1.0.2
+  percentages_with_animation: ^1.0.3
 
 dev_dependencies:
   flutter_test:
