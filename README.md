@@ -43,8 +43,8 @@ the [percentages_with_animation](https://pub.dev/packages/percentages_with_anima
 
 # Versioning
 
-Flutter SDK version: 3.27.1 <br />
-Dart Version: 3.6.0 <br />
+Flutter SDK version: 3.27.3 <br />
+Dart Version: 3.6.1 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 
