@@ -130,11 +130,11 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
             ),
           ),
         ),
-        Hero(
-          tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
-          child: Column(
-            children: [
-              CachedNetworkImage(
+        Column(
+          children: [
+            Hero(
+              tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+              child: CachedNetworkImage(
                 imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
                   _pokemonDetailsBloc
@@ -154,35 +154,35 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                 height: 150,
                 width: 150,
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    pokemonDetailsDataModel.pokemonEntity?.name
-                            ?.upperCaseFirstLetter() ??
-                        "",
-                    style: const TextStyle(
-                      fontSize: 19,
-                      color: Colors.white,
-                    ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  pokemonDetailsDataModel.pokemonEntity?.name
+                          ?.upperCaseFirstLetter() ??
+                      "",
+                  style: const TextStyle(
+                    fontSize: 19,
+                    color: Colors.white,
                   ),
-                  const SizedBox(
-                    width: 5,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
+                  style: const TextStyle(
+                    fontSize: 17,
+                    color: Colors.white,
                   ),
-                  Text(
-                    " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );
