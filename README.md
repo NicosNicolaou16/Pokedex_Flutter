@@ -39,7 +39,7 @@ cleaner and more maintainable code.  <br />
 shared elements between screens by linking them with a common tag.  <br />
 The percentage for showing the skills of each Pokémon is calculated using
 the [percentages_with_animation](https://pub.dev/packages/percentages_with_animation) built by
-@NicosNicolaou16. <br />
+[NicosNicolaou16](https://github.com/NicosNicolaou16). <br />
 
 # Versioning
 
