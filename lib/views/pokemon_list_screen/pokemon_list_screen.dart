@@ -112,24 +112,24 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   }
 
   Widget _cardPokemonImage(PokemonEntity pokemonEntity) {
-    return Hero(
-      tag: pokemonEntity.imageUrl ?? "",
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PokemonDetailsScreen(
-                      pokemonEntity: pokemonEntity,
-                    )),
-          );
-        },
-        child: Card(
-          elevation: 9,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          color: Colors.green,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PokemonDetailsScreen(
+                    pokemonEntity: pokemonEntity,
+                  )),
+        );
+      },
+      child: Card(
+        elevation: 9,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        color: Colors.green,
+        child: Hero(
+          tag: pokemonEntity.imageUrl ?? "",
           child: CachedNetworkImage(
             imageUrl: pokemonEntity.imageUrl ?? "",
             imageBuilder: (context, imageProvider) => Container(
