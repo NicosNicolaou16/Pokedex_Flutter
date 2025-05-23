@@ -26,9 +26,9 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
       getIt.get<PokemonDetailsBloc>();
 
   _init(BuildContext context) {
+    _pokemonDetailsBloc.add(Offline(pokemonEntity: widget.pokemonEntity));
     _pokemonDetailsBloc
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
-    _pokemonDetailsBloc.add(Offline(pokemonEntity: widget.pokemonEntity));
   }
 
   @override

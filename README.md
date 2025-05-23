@@ -29,9 +29,6 @@ and services, separates business logic, data access, and UI by using streams to 
 manage data flow. ([Bloc Pattern Documentation](https://bloclibrary.dev/getting-started/)) <br />
 [Cached Network Image](https://pub.dev/packages/cached_network_image) is a package that it is
 responsible for loading the images and supports offline functionality.  <br />
-[Palette](https://pub.dev/packages/palette_generator) is used to retrieve the color from the image;
-in our case, we are using the Pokémon color to paint the linear indicator with the same
-color.  <br />
 [Get It (Dependencies Injection)](https://pub.dev/packages/get_it) is a lightweight dependency
 injection package for Flutter that allows you to register and access services globally, promoting
 cleaner and more maintainable code.  <br />
@@ -43,8 +40,8 @@ the [percentages_with_animation](https://pub.dev/packages/percentages_with_anima
 
 # Versioning
 
-Flutter SDK version: 3.27.3 <br />
-Dart Version: 3.6.1 <br />
+Flutter SDK version: 3.32.0 <br />
+Dart Version: 3.8.0 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 
