@@ -8,9 +8,9 @@ plugins {
 
 android {
     namespace = "com.nicos.pokedex_flutter"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = "28.2.13676358"
-    buildToolsVersion = "35.0.1"
+    buildToolsVersion = "36.0.0"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -35,7 +35,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = 29
-        targetSdk = 35
+        targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
