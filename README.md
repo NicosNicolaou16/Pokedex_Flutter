@@ -15,6 +15,7 @@ between the screens.
   <a title="simulator_image"><img src="examples/Screenshot_20240817_012157.png" height="500" width="200"></a>
   <a title="simulator_image"><img src="examples/Screenshot_20240817_012221.png" height="500" width="200"></a>
   <a title="simulator_image"><img src="examples/example_gif1.gif" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/example_gif2.gif" height="500" width="200"></a>
 </p>
 
 # The Project Contain the following technologies and libraries
@@ -40,8 +41,8 @@ the [percentages_with_animation](https://pub.dev/packages/percentages_with_anima
 
 # Versioning
 
-Flutter SDK version: 3.32.0 <br />
-Dart Version: 3.8.0 <br />
+Flutter SDK version: 3.32.8 <br />
+Dart Version: 3.8.1 <br />
 
 # Feeds/Urls/End Point (parsing some data from the response)
 
@@ -54,3 +55,5 @@ https://github.com/PokeAPI/sprites (GitHub) <br />
 
 https://dribbble.com/shots/6540871-Pokedex-App# - Get some UI - not completely use it (CHECK THE
 LINK FOR THE DESIGN) <br />
+https://ideas.fandom.com/wiki/Pok%C3%A9_Ball_Pok%C3%A9mon_Ideas_(Super_Smash_Bros._series)?file=Pok%C3%A9_Ball_Redraw_by_oykawoo.png - app icon <bf />
+https://ideas.fandom.com/wiki/Pok%C3%A9_Ball_Pok%C3%A9mon_Ideas_(Super_Smash_Bros._series) - app icon <bf />
