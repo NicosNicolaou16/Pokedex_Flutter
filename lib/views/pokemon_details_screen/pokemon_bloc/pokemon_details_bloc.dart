@@ -42,7 +42,7 @@ class PokemonDetailsBloc
               shipsServiceResponse.dioException,
               shipsServiceResponse.statusMessage,
               shipsServiceResponse.statusCode ?? -1),
-          statusCode: -1,
+          statusCode: shipsServiceResponse.statusCode ?? -1,
           pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.error,
         ));
       }
