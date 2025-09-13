@@ -20,7 +20,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
-  flutter: 3.32.8
+  flutter: 3.35.3
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -44,12 +44,12 @@ dependencies:
   path: ^1.9.0
   cached_network_image: ^3.4.1
   get_it: ^8.2.0
-  percentages_with_animation: ^1.1.1
+  percentages_with_animation: ^1.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  drift_dev: ^2.28.1
+  drift_dev: ^2.28.2
   build_runner: ^2.6.0
 
   # The "flutter_lints" package below contains a set of recommended lints to

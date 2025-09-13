@@ -30,18 +30,19 @@ class PokemonDetailsBloc
         .requestToGetPokemonDetails(event.pokemonEntity.url ?? "")
         .then((shipsServiceResponse) async {
       if (shipsServiceResponse.pokemonDetailsEntity != null) {
+        List<PokemonDetailsDataModel> pokemonDetailsDataModelList =
+            await PokemonDetailsDataModel.createPokemonDetailsDataModel(
+                event.pokemonEntity);
         emit(state.copyWith(
             pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
-            pokemonDetailsDataModelList:
-                await PokemonDetailsDataModel.createPokemonDetailsDataModel(
-                    event.pokemonEntity)));
+            pokemonDetailsDataModelList: pokemonDetailsDataModelList));
       } else {
         emit(state.copyWith(
           error: ErrorHandling.getErrorMessage(
               shipsServiceResponse.dioException,
               shipsServiceResponse.statusMessage,
               shipsServiceResponse.statusCode ?? -1),
-          statusCode: -1,
+          statusCode: shipsServiceResponse.statusCode ?? -1,
           pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.error,
         ));
       }
@@ -58,16 +59,18 @@ class PokemonDetailsBloc
 
   Future<Color?> _getImagePalette(ImageProvider imageProvider) async {
     final ColorScheme colorScheme = await ColorScheme.fromImageProvider(
-        provider: imageProvider,);
+      provider: imageProvider,
+    );
     return colorScheme.primaryFixedDim;
   }
 
   FutureOr<void> _offline(
       Offline event, Emitter<PokemonDetailsStates> emit) async {
+    List<PokemonDetailsDataModel> pokemonDetailsDataModelList =
+        await PokemonDetailsDataModel.createPokemonDetailsDataModel(
+            event.pokemonEntity);
     emit(state.copyWith(
-      pokemonDetailsDataModelList:
-          await PokemonDetailsDataModel.createPokemonDetailsDataModel(
-              event.pokemonEntity),
+      pokemonDetailsDataModelList: pokemonDetailsDataModelList,
       pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
     ));
   }

@@ -25,7 +25,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   final PokemonDetailsBloc _pokemonDetailsBloc =
       getIt.get<PokemonDetailsBloc>();
 
-  _init(BuildContext context) {
+  void _init(BuildContext context) {
     _pokemonDetailsBloc.add(Offline(pokemonEntity: widget.pokemonEntity));
     _pokemonDetailsBloc
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
@@ -211,7 +211,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
             percentageHeight: 30,
             backgroundDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.grey.withOpacity(0.3),
+              color: Colors.grey.withValues(alpha: 0.3),
             ),
             percentageDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),

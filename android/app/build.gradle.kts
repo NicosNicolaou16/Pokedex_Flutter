@@ -13,13 +13,13 @@ android {
     buildToolsVersion = "36.0.0"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlin {
         compilerOptions {
-            jvmTarget = JvmTarget.fromTarget("17")
+            jvmTarget = JvmTarget.fromTarget("21")
         }
     }
 
@@ -50,7 +50,7 @@ android {
 
     externalNativeBuild {
         cmake {
-            version = "4.0.3"
+            version = "4.1.1"
         }
     }
 }

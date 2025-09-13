@@ -46,7 +46,7 @@ class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
               pokemonServiceResponse.dioException,
               pokemonServiceResponse.statusMessage,
               pokemonServiceResponse.statusCode ?? -1),
-          statusCode: -1,
+          statusCode: pokemonServiceResponse.statusCode ?? -1,
           pokemonStatesEnum: PokemonStatesEnum.error,
         ));
       }
