@@ -21,7 +21,7 @@ class PokemonListScreen extends StatefulWidget {
 class _PokemonListScreenState extends State<PokemonListScreen> {
   final PokemonListBloc _pokemonListBloc = getIt.get<PokemonListBloc>();
 
-  _init(BuildContext context) {
+  void _init(BuildContext context) {
     _pokemonListBloc.add(PokemonListFetchData(url: Api.pokemonUrl));
     _pokemonListBloc.add(Offline());
   }
