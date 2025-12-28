@@ -33,20 +33,18 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider(
-        create: (_) => _pokemonDetailsBloc,
-        child: BlocConsumer<PokemonDetailsBloc, PokemonDetailsStates>(
-          listener: (context, state) {
-            if (state.pokemonDetailsStatesEnum ==
-                PokemonDetailsStatesEnum.error) {
-              AlertsDialog.showAlertDialog(state.error ?? "", context);
-            }
-          },
-          builder: (context, state) {
-            return _states(state, context);
-          },
-        ),
+    return BlocProvider(
+      create: (_) => _pokemonDetailsBloc,
+      child: BlocConsumer<PokemonDetailsBloc, PokemonDetailsStates>(
+        listener: (context, state) {
+          if (state.pokemonDetailsStatesEnum ==
+              PokemonDetailsStatesEnum.error) {
+            AlertsDialog.showAlertDialog(state.error ?? "", context);
+          }
+        },
+        builder: (context, state) {
+          return _states(state, context);
+        },
       ),
     );
   }
