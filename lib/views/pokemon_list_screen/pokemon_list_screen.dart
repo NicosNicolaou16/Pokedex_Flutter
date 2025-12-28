@@ -32,33 +32,31 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.green,
       ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.black12,
-          appBar: AppBar(
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.green,
-            centerTitle: true,
-            elevation: 0,
-            title: const Text(
-              "Pokemon List",
-              style: TextStyle(
-                fontSize: 21,
-              ),
+      child: Scaffold(
+        backgroundColor: Colors.black12,
+        appBar: AppBar(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.green,
+          centerTitle: true,
+          elevation: 0,
+          title: const Text(
+            "Pokemon List",
+            style: TextStyle(
+              fontSize: 21,
             ),
           ),
-          body: BlocProvider(
-            create: (_) => _pokemonListBloc,
-            child: BlocConsumer<PokemonListBloc, PokemonStates>(
-              listener: (context, state) {
-                if (state.pokemonStatesEnum == PokemonStatesEnum.error) {
-                  AlertsDialog.showAlertDialog(state.error ?? "", context);
-                }
-              },
-              builder: (context, state) {
-                return _states(state, context);
-              },
-            ),
+        ),
+        body: BlocProvider(
+          create: (_) => _pokemonListBloc,
+          child: BlocConsumer<PokemonListBloc, PokemonStates>(
+            listener: (context, state) {
+              if (state.pokemonStatesEnum == PokemonStatesEnum.error) {
+                AlertsDialog.showAlertDialog(state.error ?? "", context);
+              }
+            },
+            builder: (context, state) {
+              return _states(state, context);
+            },
           ),
         ),
       ),
