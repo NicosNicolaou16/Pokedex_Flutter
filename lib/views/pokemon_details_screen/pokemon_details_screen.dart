@@ -50,6 +50,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _states(PokemonDetailsStates state, BuildContext context) {
+    print("rewrrwrwrwre: ${state.pokemonDetailsStatesEnum}");
     if (state.pokemonDetailsStatesEnum == PokemonDetailsStatesEnum.initial) {
       _init(context);
     } else if (state.pokemonDetailsStatesEnum ==
@@ -135,8 +136,10 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
               child: CachedNetworkImage(
                 imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
-                  _pokemonDetailsBloc
-                      .add(PokemonPaletteColor(imageProvider: imageProvider));
+\                  if (_pokemonDetailsBloc.state.color == Colors.transparent) {
+                    _pokemonDetailsBloc
+                        .add(PokemonPaletteColor(imageProvider: imageProvider));
+                  }
                   return Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
