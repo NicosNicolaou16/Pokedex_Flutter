@@ -136,7 +136,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
               child: CachedNetworkImage(
                 imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
-\                  if (_pokemonDetailsBloc.state.color == Colors.transparent) {
+                  if (_pokemonDetailsBloc.state.color == Colors.transparent) {
                     _pokemonDetailsBloc
                         .add(PokemonPaletteColor(imageProvider: imageProvider));
                   }
