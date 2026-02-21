@@ -1,7 +1,7 @@
 # Pokedex_Flutter
 
 [![Linktree](https://img.shields.io/badge/linktree-1de9b6?style=for-the-badge&logo=linktree&logoColor=white)](https://linktr.ee/nicos_nicolaou)
-[![Static Badge](https://img.shields.io/badge/Site-blue?style=for-the-badge&label=Web)](https://nicosnicolaou16.github.io/)
+[![Site](https://img.shields.io/badge/Site-blue?style=for-the-badge&label=Web)](https://nicosnicolaou16.github.io/)
 [![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white)](https://twitter.com/nicolaou_nicos)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/nicos-nicolaou-a16720aa)
 [![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@nicosnicolaou)
@@ -9,62 +9,68 @@
 [![Bluesky](https://img.shields.io/badge/Bluesky-0285FF?style=for-the-badge&logo=Bluesky&logoColor=white)](https://bsky.app/profile/nicolaounicos.bsky.social)
 [![Dev.to blog](https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white)](https://dev.to/nicosnicolaou16)
 [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@nicosnicolaou16)
-[![Static Badge](https://img.shields.io/badge/Developer_Profile-blue?style=for-the-badge&label=Google)](https://g.dev/nicolaou_nicos)
+[![Google Developer Profile](https://img.shields.io/badge/Developer_Profile-blue?style=for-the-badge&label=Google)](https://g.dev/nicolaou_nicos)
 
-The Pokedex - Pokemon app is a project that applied some Flutter technologies recommended by Flutter
-Community such as Bloc Pattern for UI management. Drift SQL Database,
-Dio for Network Manager, Get It for Dependencies Injection and Hero Widget for Shared Elements
-between the screens.
+The Pokedex - Pokemon app is a Flutter project that applies technologies recommended by the Flutter Community. It demonstrates a clean architecture and a fluid user interface.
 
-> [!IMPORTANT]  
-> Similar project with (Kotlin Language) :point_right: [Pokedex_Compose](https://github.com/NicosNicolaou16/Pokedex_Compose) :point_left: <br />
+> [!IMPORTANT]
+> A similar project is also available in Kotlin for Android!
+> 👉 **[Pokedex_Compose](https://github.com/NicosNicolaou16/Pokedex_Compose)** 👈
 
-# Examples
+## ✨ Features
+
+*   **State Management:** Utilizes the **BLoC Pattern** with a single state approach for predictable and maintainable UI logic.
+*   **Offline First:** Caches Pokémon data using the **Drift** (Moor) SQL toolkit, allowing the app to be fully functional offline.
+*   **Efficient Networking:** Fetches data from the [PokéAPI](https://pokeapi.co/) using the powerful **Dio** HTTP client.
+*   **Dependency Injection:** Implements **GetIt** for service locator-based dependency injection, promoting decoupled and testable code.
+*   **Smooth Animations:** Leverages the **Hero Widget** for beautiful shared element transitions between screens.
+*   **Image Caching:** Uses **CachedNetworkImage** to efficiently load and cache images for offline availability.
+
+## 📸 Screenshots & Demos
 
 <p align="left">
-  <a title="simulator_image"><img src="examples/Screenshot_20240817_012140.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240817_012157.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/Screenshot_20240817_012221.png" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/example_gif1.gif" height="500" width="200"></a>
-  <a title="simulator_image"><img src="examples/example_gif2.gif" height="500" width="200"></a>
+  <img src="examples/Screenshot_20240817_012140.png" alt="Pokemon List Screen" height="500" width="200">
+  <img src="examples/Screenshot_20240817_012157.png" alt="Pokemon Detail Screen" height="500" width="200">
+  <img src="examples/Screenshot_20240817_012221.png" alt="Pokemon Stats" height="500" width="200">
+  <img src="examples/example_gif1.gif" alt="List to Detail Transition" height="500" width="200">
+  <img src="examples/example_gif2.gif" alt="Scrolling and Searching" height="500" width="200">
 </p>
 
-# The Project Contain the following technologies and libraries
+## 🛠️ Tech Stack & Libraries
 
-[Dio Network Manager](https://pub.dev/packages/dio) is responsible for making requests and
-retrieving data from the remote server. <br />
-[Drift Database](https://drift.simonbinder.eu/docs/getting-started/) is responsible for saving the
-retrieved data from the remote server, querying data from the local database, and supporting offline
-functionality. ([Drift Database Documentation](https://pub.dev/packages/drift)) <br />
-[Bloc Patterns using single state](https://pub.dev/packages/flutter_bloc) along with repositories
-and services, separates business logic, data access, and UI by using streams to handle state and
-manage data flow. ([Bloc Pattern Documentation](https://bloclibrary.dev/getting-started/)) <br />
-[Cached Network Image](https://pub.dev/packages/cached_network_image) is a package that it is
-responsible for loading the images and supports offline functionality.  <br />
-[Get It (Dependencies Injection)](https://pub.dev/packages/get_it) is a lightweight dependency
-injection package for Flutter that allows you to register and access services globally, promoting
-cleaner and more maintainable code.  <br />
-[Hero Widget](https://docs.flutter.dev/ui/animations/hero-animations) creates a smooth animation for
-shared elements between screens by linking them with a common tag.  <br />
-The percentage for showing the skills of each Pokémon is calculated using
-the [percentages_with_animation](https://pub.dev/packages/percentages_with_animation) built by
-[NicosNicolaou16](https://github.com/NicosNicolaou16). <br />
+This project is built with **[Dart](https://dart.dev/)** and the **[Flutter](https://flutter.dev/)** framework, utilizing a variety of modern libraries:
 
-# Versioning
+*   **Networking:** [Dio](https://pub.dev/packages/dio)
+*   **Database & Offline Storage:** [Drift](https://pub.dev/packages/drift)
+*   **State Management:** [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+*   **Image Handling:** [cached_network_image](https://pub.dev/packages/cached_network_image)
+*   **Dependency Injection:** [get_it](https://pub.dev/packages/get_it)
+*   **UI & Animations:** [Hero Widget](https://docs.flutter.dev/ui/animations/hero-animations)
+*   **Custom Components:** [percentages_with_animation](https://pub.dev/packages/percentages_with_animation) for displaying Pokémon stats, built by [@NicosNicolaou16](https://github.com/NicosNicolaou16).
 
-Flutter SDK version: 3.38.5 <br />
-Dart Version: 3.10.4 <br />
+## 🔧 Versioning
 
-# Feeds/Urls/End Point (parsing some data from the response)
+*   **Flutter SDK Version:** 3.31.2
+*   **Dart Version:** 3.11.0
 
-## (Links References for Ends Points)
+## 📚 APIs & References
 
-https://pokeapi.co/ <br />
-https://github.com/PokeAPI/sprites (GitHub) <br />
+### Data Sources
 
-# References
+*   **Primary API:** [PokéAPI (pokeapi.co)](https://pokeapi.co/)
+*   **Image Sprites:** [PokeAPI/sprites on GitHub](https://github.com/PokeAPI/sprites)
 
-https://dribbble.com/shots/6540871-Pokedex-App# - Get some UI - not completely use it (CHECK THE
-LINK FOR THE DESIGN) <br />
-https://ideas.fandom.com/wiki/Pok%C3%A9_Ball_Pok%C3%A9mon_Ideas_(Super_Smash_Bros._series)?file=Pok%C3%A9_Ball_Redraw_by_oykawoo.png - app icon <bf />
-https://ideas.fandom.com/wiki/Pok%C3%A9_Ball_Pok%C3%A9mon_Ideas_(Super_Smash_Bros._series) - app icon <bf />
+### Design & Inspiration
+
+*   **UI/UX Design Inspiration:** [Dribbble - Pokedex App by Alexandr](https://dribbble.com/shots/6540871-Pokedex-App) (Note: Used as inspiration, not a direct copy).
+*   **App Icon:** Derived from [Fandom Ideas Wiki](https://ideas.fandom.com/wiki/Pok%C3%A9_Ball_Pok%C3%A9mon_Ideas_(Super_Smash_Bros._series)?file=Pok%C3%A9_Ball_Redraw_by_oykawoo.png).
+
+## ⭐ Stargazers
+
+If you enjoy this project, please give it a star!
+Check out all the stargazers
+here: [Stargazers on GitHub](https://github.com/NicosNicolaou16/Pokedex_Flutter/stargazers)
+
+## 🙏 Support & Contributions
+
+This library is actively maintained. Feedback, bug reports, and feature requests are welcome! Please feel free to **open an issue** or submit a **pull request**.

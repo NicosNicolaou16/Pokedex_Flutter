@@ -31,6 +31,13 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
   }
 
+  void _colorPalette(ImageProvider imageProvider) {
+    if (_pokemonDetailsBloc.state.color == Colors.transparent) {
+      _pokemonDetailsBloc
+          .add(PokemonPaletteColor(imageProvider: imageProvider));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -135,8 +142,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
               child: CachedNetworkImage(
                 imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
-                  _pokemonDetailsBloc
-                      .add(PokemonPaletteColor(imageProvider: imageProvider));
+                  _colorPalette(imageProvider);
                   return Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
