@@ -31,6 +31,13 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
   }
 
+  void _colorPalette(ImageProvider imageProvider) {
+    if (_pokemonDetailsBloc.state.color == Colors.transparent) {
+      _pokemonDetailsBloc
+          .add(PokemonPaletteColor(imageProvider: imageProvider));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -50,7 +57,6 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _states(PokemonDetailsStates state, BuildContext context) {
-    print("rewrrwrwrwre: ${state.pokemonDetailsStatesEnum}");
     if (state.pokemonDetailsStatesEnum == PokemonDetailsStatesEnum.initial) {
       _init(context);
     } else if (state.pokemonDetailsStatesEnum ==
@@ -136,10 +142,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
               child: CachedNetworkImage(
                 imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
-                  if (_pokemonDetailsBloc.state.color == Colors.transparent) {
-                    _pokemonDetailsBloc
-                        .add(PokemonPaletteColor(imageProvider: imageProvider));
-                  }
+                  _colorPalette(imageProvider);
                   return Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
