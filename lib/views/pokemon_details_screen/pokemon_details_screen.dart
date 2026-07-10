@@ -98,11 +98,27 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
           ),
         ),
         body: ListView.builder(
-            itemCount:
-                _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
+            itemCount: _pokemonDetailsBloc
+                    .state.pokemonDetailsDataModelList.isEmpty
+                ? 1
+                : _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
             itemBuilder: (context, index) {
-              PokemonDetailsDataModel pokemonDetailsDataModel =
-                  _pokemonDetailsBloc.state.pokemonDetailsDataModelList[index];
+              final list =
+                  _pokemonDetailsBloc.state.pokemonDetailsDataModelList;
+              PokemonDetailsDataModel pokemonDetailsDataModel;
+
+              if (list.isEmpty) {
+                /// Set the image and name view by default before the data is fetched, so, the loading animation is shown.
+                pokemonDetailsDataModel = PokemonDetailsDataModel(
+                  pokemonEntity: widget.pokemonEntity,
+                  pokemonDetailsDataModelViewTypes:
+                      PokemonDetailsDataModelViewTypes.imageWithNameViewType,
+                );
+              } else {
+                /// Get the data from the list.
+                pokemonDetailsDataModel = list[index];
+              }
+
               if (pokemonDetailsDataModel.pokemonDetailsDataModelViewTypes ==
                   PokemonDetailsDataModelViewTypes.imageWithNameViewType) {
                 return _imageAndNameView(pokemonDetailsDataModel);
@@ -138,9 +154,9 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         Column(
           children: [
             Hero(
-              tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+              tag: widget.pokemonEntity.imageUrl ?? "",
               child: CachedNetworkImage(
-                imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+                imageUrl: widget.pokemonEntity.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
                   _colorPalette(imageProvider);
                   return Container(
