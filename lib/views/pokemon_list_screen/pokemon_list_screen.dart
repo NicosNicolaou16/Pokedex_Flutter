@@ -33,7 +33,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
         statusBarColor: Colors.green,
       ),
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           foregroundColor: Colors.white,
           backgroundColor: Colors.green,

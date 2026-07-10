@@ -11,7 +11,11 @@ class MyApp extends StatelessWidget {
       title: 'Pokedex Flutter',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+        scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
       ),
       home: const PokemonListScreen(),
