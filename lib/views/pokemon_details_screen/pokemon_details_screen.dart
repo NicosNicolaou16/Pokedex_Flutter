@@ -91,7 +91,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         statusBarColor: _pokemonDetailsBloc.state.color,
       ),
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
@@ -148,7 +148,6 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
           child: Padding(
             padding: const EdgeInsets.only(top: 130.0),
             child: Container(
-              height: 50,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.only(
@@ -218,6 +217,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
 
   Widget _statsView(PokemonDetailsDataModel pokemonDetailsDataModel) {
     return Container(
+      color: Colors.black,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
