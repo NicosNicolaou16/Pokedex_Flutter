@@ -14,8 +14,13 @@ import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemo
 
 class PokemonDetailsScreen extends StatefulWidget {
   final PokemonEntity pokemonEntity;
+  final Color? initialColor;
 
-  const PokemonDetailsScreen({super.key, required this.pokemonEntity});
+  const PokemonDetailsScreen({
+    super.key,
+    required this.pokemonEntity,
+    this.initialColor,
+  });
 
   @override
   State<PokemonDetailsScreen> createState() => _PokemonDetailsScreenState();
@@ -26,7 +31,10 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
       getIt.get<PokemonDetailsBloc>();
 
   void _init(BuildContext context) {
-    _pokemonDetailsBloc.add(Offline(pokemonEntity: widget.pokemonEntity));
+    _pokemonDetailsBloc.add(Offline(
+      pokemonEntity: widget.pokemonEntity,
+      color: widget.initialColor,
+    ));
     _pokemonDetailsBloc
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
   }
@@ -209,42 +217,45 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _statsView(PokemonDetailsDataModel pokemonDetailsDataModel) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 15.0),
-          child: Text(
-            pokemonDetailsDataModel.statsEntity?.statName
-                    ?.upperCaseFirstLetter() ??
-                "",
-            style: const TextStyle(color: Colors.white, fontSize: 19),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: LinearPercentage(
-            currentPercentage:
-                pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ?? 0,
-            maxPercentage: pokemonDetailsDataModel.maxValue?.toDouble() ?? 0,
-            backgroundHeight: 30,
-            percentageHeight: 30,
-            backgroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.grey.withValues(alpha: 0.3),
-            ),
-            percentageDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: _pokemonDetailsBloc.state.color,
-            ),
-            leftRightText: LeftRightText.leftOnly,
-            leftTextStyle: TextStyle(
-              color: _pokemonDetailsBloc.state.color,
-              fontSize: 19,
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Text(
+              pokemonDetailsDataModel.statsEntity?.statName
+                      ?.upperCaseFirstLetter() ??
+                  "",
+              style: const TextStyle(color: Colors.white, fontSize: 19),
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: LinearPercentage(
+              currentPercentage:
+                  pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ??
+                      0,
+              maxPercentage: pokemonDetailsDataModel.maxValue?.toDouble() ?? 0,
+              backgroundHeight: 30,
+              percentageHeight: 30,
+              backgroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.grey.withValues(alpha: 0.3),
+              ),
+              percentageDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: _pokemonDetailsBloc.state.color,
+              ),
+              leftRightText: LeftRightText.leftOnly,
+              leftTextStyle: TextStyle(
+                color: _pokemonDetailsBloc.state.color,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

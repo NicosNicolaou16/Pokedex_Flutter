@@ -70,6 +70,7 @@ class PokemonDetailsBloc
         await PokemonDetailsDataModel.createPokemonDetailsDataModel(
             event.pokemonEntity);
     emit(state.copyWith(
+      color: event.color,
       pokemonDetailsDataModelList: pokemonDetailsDataModelList,
       pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
     ));

@@ -117,6 +117,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
           MaterialPageRoute(
               builder: (context) => PokemonDetailsScreen(
                     pokemonEntity: pokemonEntity,
+                    initialColor: Colors.green,
                   )),
         );
       },
