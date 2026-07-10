@@ -17,8 +17,10 @@ class PokemonPaletteColor extends PokemonDetailsEvents {
 
 class Offline extends PokemonDetailsEvents {
   final PokemonEntity pokemonEntity;
+  final Color? color;
 
   Offline({
     required this.pokemonEntity,
+    this.color,
   });
 }

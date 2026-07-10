@@ -14,8 +14,13 @@ import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemo
 
 class PokemonDetailsScreen extends StatefulWidget {
   final PokemonEntity pokemonEntity;
+  final Color? initialColor;
 
-  const PokemonDetailsScreen({super.key, required this.pokemonEntity});
+  const PokemonDetailsScreen({
+    super.key,
+    required this.pokemonEntity,
+    this.initialColor,
+  });
 
   @override
   State<PokemonDetailsScreen> createState() => _PokemonDetailsScreenState();
@@ -26,7 +31,10 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
       getIt.get<PokemonDetailsBloc>();
 
   void _init(BuildContext context) {
-    _pokemonDetailsBloc.add(Offline(pokemonEntity: widget.pokemonEntity));
+    _pokemonDetailsBloc.add(Offline(
+      pokemonEntity: widget.pokemonEntity,
+      color: widget.initialColor,
+    ));
     _pokemonDetailsBloc
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
   }
@@ -83,7 +91,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         statusBarColor: _pokemonDetailsBloc.state.color,
       ),
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
@@ -98,11 +106,27 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
           ),
         ),
         body: ListView.builder(
-            itemCount:
-                _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
+            itemCount: _pokemonDetailsBloc
+                    .state.pokemonDetailsDataModelList.isEmpty
+                ? 1
+                : _pokemonDetailsBloc.state.pokemonDetailsDataModelList.length,
             itemBuilder: (context, index) {
-              PokemonDetailsDataModel pokemonDetailsDataModel =
-                  _pokemonDetailsBloc.state.pokemonDetailsDataModelList[index];
+              final list =
+                  _pokemonDetailsBloc.state.pokemonDetailsDataModelList;
+              PokemonDetailsDataModel pokemonDetailsDataModel;
+
+              if (list.isEmpty) {
+                /// Set the image and name view by default before the data is fetched, so, the loading animation is shown.
+                pokemonDetailsDataModel = PokemonDetailsDataModel(
+                  pokemonEntity: widget.pokemonEntity,
+                  pokemonDetailsDataModelViewTypes:
+                      PokemonDetailsDataModelViewTypes.imageWithNameViewType,
+                );
+              } else {
+                /// Get the data from the list.
+                pokemonDetailsDataModel = list[index];
+              }
+
               if (pokemonDetailsDataModel.pokemonDetailsDataModelViewTypes ==
                   PokemonDetailsDataModelViewTypes.imageWithNameViewType) {
                 return _imageAndNameView(pokemonDetailsDataModel);
@@ -124,7 +148,6 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
           child: Padding(
             padding: const EdgeInsets.only(top: 130.0),
             child: Container(
-              height: 50,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.only(
@@ -138,9 +161,9 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         Column(
           children: [
             Hero(
-              tag: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+              tag: widget.pokemonEntity.imageUrl ?? "",
               child: CachedNetworkImage(
-                imageUrl: pokemonDetailsDataModel.pokemonEntity?.imageUrl ?? "",
+                imageUrl: widget.pokemonEntity.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
                   _colorPalette(imageProvider);
                   return Container(
@@ -193,42 +216,46 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   }
 
   Widget _statsView(PokemonDetailsDataModel pokemonDetailsDataModel) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 15.0),
-          child: Text(
-            pokemonDetailsDataModel.statsEntity?.statName
-                    ?.upperCaseFirstLetter() ??
-                "",
-            style: const TextStyle(color: Colors.white, fontSize: 19),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: LinearPercentage(
-            currentPercentage:
-                pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ?? 0,
-            maxPercentage: pokemonDetailsDataModel.maxValue?.toDouble() ?? 0,
-            backgroundHeight: 30,
-            percentageHeight: 30,
-            backgroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.grey.withValues(alpha: 0.3),
-            ),
-            percentageDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: _pokemonDetailsBloc.state.color,
-            ),
-            leftRightText: LeftRightText.leftOnly,
-            leftTextStyle: TextStyle(
-              color: _pokemonDetailsBloc.state.color,
-              fontSize: 19,
+    return Container(
+      color: Colors.black,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Text(
+              pokemonDetailsDataModel.statsEntity?.statName
+                      ?.upperCaseFirstLetter() ??
+                  "",
+              style: const TextStyle(color: Colors.white, fontSize: 19),
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: LinearPercentage(
+              currentPercentage:
+                  pokemonDetailsDataModel.statsEntity?.baseStat?.toDouble() ??
+                      0,
+              maxPercentage: pokemonDetailsDataModel.maxValue?.toDouble() ?? 0,
+              backgroundHeight: 30,
+              percentageHeight: 30,
+              backgroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.grey.withValues(alpha: 0.3),
+              ),
+              percentageDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: _pokemonDetailsBloc.state.color,
+              ),
+              leftRightText: LeftRightText.leftOnly,
+              leftTextStyle: TextStyle(
+                color: _pokemonDetailsBloc.state.color,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

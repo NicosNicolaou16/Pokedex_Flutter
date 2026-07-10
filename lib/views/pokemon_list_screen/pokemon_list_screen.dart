@@ -33,7 +33,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
         statusBarColor: Colors.green,
       ),
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           foregroundColor: Colors.white,
           backgroundColor: Colors.green,
@@ -117,6 +117,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
           MaterialPageRoute(
               builder: (context) => PokemonDetailsScreen(
                     pokemonEntity: pokemonEntity,
+                    initialColor: Colors.green,
                   )),
         );
       },
