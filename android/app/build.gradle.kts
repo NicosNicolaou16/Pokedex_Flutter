@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.nicos.pokedex_flutter"
     compileSdk = 36
-    ndkVersion = "28.2.13676358"
+    ndkVersion = "29.0.14206865"
     buildToolsVersion = "36.0.0"
 
     compileOptions {
