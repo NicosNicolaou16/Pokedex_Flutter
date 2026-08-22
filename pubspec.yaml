@@ -20,7 +20,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
-  flutter: 3.44.6
+  flutter: 3.47.1
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -37,20 +37,20 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.9
   flutter_bloc: ^9.1.1
-  dio: ^5.10.0
-  drift: ^2.34.1
-  sqlite3: ^3.3.4
+  dio: ^5.11.0
+  drift: ^2.34.3
+  sqlite3: ^3.5.2
   path_provider: ^2.1.6
   path: ^1.9.0
   cached_network_image: ^3.4.1
   get_it: ^9.2.1
-  percentages_with_animation: ^1.1.5
+  percentages_with_animation: ^1.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  drift_dev: ^2.34.2+1
-  build_runner: ^2.15.1
+  drift_dev: ^2.34.5
+  build_runner: ^2.16.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
