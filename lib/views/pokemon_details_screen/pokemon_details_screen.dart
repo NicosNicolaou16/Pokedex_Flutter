@@ -158,7 +158,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         Column(
           children: [
             Hero(
-              tag: widget.pokemonEntity.imageUrl ?? "",
+              tag: "pokemon-${widget.pokemonEntity.name}",
               child: CachedNetworkImage(
                 imageUrl: widget.pokemonEntity.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
