@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
-import 'package:pokedex_flutter/data/repositories/pokemon_repository.dart';
+import 'package:pokedex_flutter/domain/repositories/pokemon_repository.dart';
 import 'package:pokedex_flutter/utils/error_handling.dart';
 import 'package:pokedex_flutter/utils/get_it_dependencies_injection.dart';
 import 'package:pokedex_flutter/views/pokemon_list_screen/pokemon_bloc/pokemon_list_events.dart';
