@@ -22,8 +22,8 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   final PokemonListBloc _pokemonListBloc = getIt.get<PokemonListBloc>();
 
   void _init(BuildContext context) {
-    _pokemonListBloc.add(PokemonListFetchData(url: Api.pokemonUrl));
     _pokemonListBloc.add(Offline());
+    _pokemonListBloc.add(PokemonListFetchData(url: Api.pokemonUrl));
   }
 
   @override
@@ -117,7 +117,6 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
           MaterialPageRoute(
               builder: (context) => PokemonDetailsScreen(
                     pokemonEntity: pokemonEntity,
-                    initialColor: Colors.green,
                   )),
         );
       },
@@ -128,7 +127,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
         ),
         color: Colors.green,
         child: Hero(
-          tag: pokemonEntity.imageUrl ?? "",
+          tag: "pokemon-${pokemonEntity.name}",
           child: CachedNetworkImage(
             imageUrl: pokemonEntity.imageUrl ?? "",
             imageBuilder: (context, imageProvider) => Container(

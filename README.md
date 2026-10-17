@@ -50,8 +50,8 @@ This project is built with **[Dart](https://dart.dev/)** and the **[Flutter](htt
 
 ## 🔧 Versioning
 
-*   **Flutter SDK Version:** 3.47.1
-*   **Dart Version:** 3.13.1
+*   **Flutter SDK Version:** 3.47.7
+*   **Dart Version:** 3.13.5
 
 ## 📚 APIs & References
 

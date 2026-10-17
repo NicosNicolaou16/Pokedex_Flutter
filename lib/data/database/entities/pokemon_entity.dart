@@ -39,15 +39,15 @@ class PokemonEntity {
   }
 
   static List<PokemonEntity> fromJsonList(List json) {
-    List<PokemonEntity> shipEntityList;
+    List<PokemonEntity> pokemonEntityList;
     if (json != null) {
-      shipEntityList =
+      pokemonEntityList =
           List<PokemonEntity>.from(json.map((e) => PokemonEntity.fromJson(e)))
               .toList();
     } else {
       return [];
     }
-    return shipEntityList;
+    return pokemonEntityList;
   }
 
   PokemonCompanion toCompanion(String? imageUrl, int? order) {
@@ -78,7 +78,7 @@ class PokemonEntity {
     return pokemonList;
   }
 
-  static Future<void> _buildImageUrl(PokemonEntity pokemonEntity) async {
+  static void _buildImageUrl(PokemonEntity pokemonEntity) {
     RegExp exp = RegExp(r'\d+');
     Iterable<Match>? matches = exp.allMatches(pokemonEntity.url ?? "");
     String? pokemonIdAsString = matches.map((e) => e.group(0)!).lastOrNull;

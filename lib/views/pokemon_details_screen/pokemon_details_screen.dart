@@ -14,12 +14,10 @@ import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemo
 
 class PokemonDetailsScreen extends StatefulWidget {
   final PokemonEntity pokemonEntity;
-  final Color? initialColor;
 
   const PokemonDetailsScreen({
     super.key,
     required this.pokemonEntity,
-    this.initialColor,
   });
 
   @override
@@ -29,21 +27,20 @@ class PokemonDetailsScreen extends StatefulWidget {
 class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   final PokemonDetailsBloc _pokemonDetailsBloc =
       getIt.get<PokemonDetailsBloc>();
+  bool _paletteRequested = false;
 
   void _init(BuildContext context) {
     _pokemonDetailsBloc.add(Offline(
       pokemonEntity: widget.pokemonEntity,
-      color: widget.initialColor,
     ));
     _pokemonDetailsBloc
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
   }
 
   void _colorPalette(ImageProvider imageProvider) {
-    if (_pokemonDetailsBloc.state.color == Colors.transparent) {
-      _pokemonDetailsBloc
-          .add(PokemonPaletteColor(imageProvider: imageProvider));
-    }
+    if (_paletteRequested) return;
+    _paletteRequested = true;
+    _pokemonDetailsBloc.add(PokemonPaletteColor(imageProvider: imageProvider));
   }
 
   @override
@@ -161,7 +158,7 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
         Column(
           children: [
             Hero(
-              tag: widget.pokemonEntity.imageUrl ?? "",
+              tag: "pokemon-${widget.pokemonEntity.name}",
               child: CachedNetworkImage(
                 imageUrl: widget.pokemonEntity.imageUrl ?? "",
                 imageBuilder: (context, imageProvider) {
@@ -200,13 +197,12 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text(
-                  " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
+                if (pokemonDetailsDataModel.pokemonDetailsEntity?.weight
+                    case final w? when w >= 0)
+                  Text(
+                    " - ${(w / 10).toStringAsFixed(1)} kg",
+                    style: const TextStyle(fontSize: 17, color: Colors.white),
                   ),
-                ),
               ],
             ),
           ],

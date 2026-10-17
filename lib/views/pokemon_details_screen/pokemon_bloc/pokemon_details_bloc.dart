@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_flutter/data/models/pokemon_details_data_model/pokemon_details_data_model.dart';
-import 'package:pokedex_flutter/data/repositories/pokemon_details_repository.dart';
+import 'package:pokedex_flutter/domain/repositories/pokemon_details_repository.dart';
 import 'package:pokedex_flutter/utils/error_handling.dart';
 import 'package:pokedex_flutter/utils/get_it_dependencies_injection.dart';
 import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemon_details_events.dart';
@@ -70,7 +70,7 @@ class PokemonDetailsBloc
         await PokemonDetailsDataModel.createPokemonDetailsDataModel(
             event.pokemonEntity);
     emit(state.copyWith(
-      color: event.color,
+      color: state.color == Colors.transparent ? event.color : state.color,
       pokemonDetailsDataModelList: pokemonDetailsDataModelList,
       pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
     ));

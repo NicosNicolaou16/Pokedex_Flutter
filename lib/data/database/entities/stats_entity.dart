@@ -34,15 +34,15 @@ class StatsEntity {
   }
 
   static List<StatsEntity> fromJsonList(List json) {
-    List<StatsEntity> shipEntityList;
+    List<StatsEntity> statsEntityList;
     if (json != null) {
-      shipEntityList =
+      statsEntityList =
           List<StatsEntity>.from(json.map((e) => StatsEntity.fromJson(e)))
               .toList();
     } else {
       return [];
     }
-    return shipEntityList;
+    return statsEntityList;
   }
 
   StatsCompanion toCompanion(
@@ -57,6 +57,12 @@ class StatsEntity {
 
   static Future<void> deleteAllStats(AppDb appDb) async {
     await appDb.delete(appDb.stats).go();
+  }
+
+  static Future<void> deleteStatsByPokemonName(AppDb appDb, String name) async {
+    await (appDb.delete(appDb.stats)
+      ..where((t) => t.pokemonName.equals(name)))
+        .go();
   }
 
   static Future<List<StatsEntity>> saveStats(
