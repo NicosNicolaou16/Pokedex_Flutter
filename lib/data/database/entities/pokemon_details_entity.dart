@@ -33,7 +33,7 @@ class PokemonDetailsEntity {
   PokemonDetailsCompanion toCompanion() {
     return PokemonDetailsCompanion(
       name: Value(name ?? ""),
-      weight: Value(weight ?? -1),
+      weight: Value(weight),
     );
   }
 

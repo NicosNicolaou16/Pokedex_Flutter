@@ -200,13 +200,12 @@ class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text(
-                  " - ${pokemonDetailsDataModel.pokemonDetailsEntity?.weight.toString() ?? ""}Kg",
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
+                if (pokemonDetailsDataModel.pokemonDetailsEntity?.weight
+                    case final w? when w >= 0)
+                  Text(
+                    " - ${(w / 10).toStringAsFixed(1)} kg",
+                    style: const TextStyle(fontSize: 17, color: Colors.white),
                   ),
-                ),
               ],
             ),
           ],
