@@ -59,6 +59,12 @@ class StatsEntity {
     await appDb.delete(appDb.stats).go();
   }
 
+  static Future<void> deleteStatsByPokemonName(AppDb appDb, String name) async {
+    await (appDb.delete(appDb.stats)
+      ..where((t) => t.pokemonName.equals(name)))
+        .go();
+  }
+
   static Future<List<StatsEntity>> saveStats(
       List<StatsEntity> statsList, String pokemonName) async {
     AppDb appDb = getIt.get<AppDb>();
