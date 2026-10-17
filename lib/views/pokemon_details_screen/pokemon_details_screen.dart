@@ -14,12 +14,10 @@ import 'package:pokedex_flutter/views/pokemon_details_screen/pokemon_bloc/pokemo
 
 class PokemonDetailsScreen extends StatefulWidget {
   final PokemonEntity pokemonEntity;
-  final Color? initialColor;
 
   const PokemonDetailsScreen({
     super.key,
     required this.pokemonEntity,
-    this.initialColor,
   });
 
   @override
@@ -29,21 +27,20 @@ class PokemonDetailsScreen extends StatefulWidget {
 class _PokemonDetailsScreenState extends State<PokemonDetailsScreen> {
   final PokemonDetailsBloc _pokemonDetailsBloc =
       getIt.get<PokemonDetailsBloc>();
+  bool _paletteRequested = false;
 
   void _init(BuildContext context) {
     _pokemonDetailsBloc.add(Offline(
       pokemonEntity: widget.pokemonEntity,
-      color: widget.initialColor,
     ));
     _pokemonDetailsBloc
         .add(PokemonDetailsFetchData(pokemonEntity: widget.pokemonEntity));
   }
 
   void _colorPalette(ImageProvider imageProvider) {
-    if (_pokemonDetailsBloc.state.color == Colors.transparent) {
-      _pokemonDetailsBloc
-          .add(PokemonPaletteColor(imageProvider: imageProvider));
-    }
+    if (_paletteRequested) return;
+    _paletteRequested = true;
+    _pokemonDetailsBloc.add(PokemonPaletteColor(imageProvider: imageProvider));
   }
 
   @override
