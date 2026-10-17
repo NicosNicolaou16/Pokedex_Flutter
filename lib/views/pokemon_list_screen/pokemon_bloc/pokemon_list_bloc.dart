@@ -30,7 +30,7 @@ class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
     )
         .then((pokemonServiceResponse) async {
       if (pokemonServiceResponse.pokemonEntityList != null) {
-        if (pokemonServiceResponse.nextUrl == null) {
+        if (event.isFirstTime == true) {
           _pokemonEntityList = pokemonServiceResponse.pokemonEntityList!;
         } else {
           _pokemonEntityList += pokemonServiceResponse.pokemonEntityList!;
