@@ -1,5 +1,5 @@
 extension UpperCaseFirstLetter on String {
   String upperCaseFirstLetter() {
-    return this[0].toUpperCase() + replaceFirst(this[0], "");
+    return isEmpty ? this : this[0].toUpperCase() + substring(1);
   }
 }
