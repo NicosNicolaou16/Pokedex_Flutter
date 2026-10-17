@@ -22,6 +22,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
   final PokemonListBloc _pokemonListBloc = getIt.get<PokemonListBloc>();
 
   void _init(BuildContext context) {
+    _pokemonListBloc.add(Offline());
     _pokemonListBloc.add(PokemonListFetchData(url: Api.pokemonUrl));
   }
 

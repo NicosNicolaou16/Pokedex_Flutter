@@ -21,7 +21,6 @@ class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
     PokemonListFetchData event,
     Emitter<PokemonStates> emit,
   ) async {
-    add(Offline());
     if (event.url == null) return;
     emit(state.copyWith(pokemonStatesEnum: PokemonStatesEnum.loading));
     await _pokemonRepository
