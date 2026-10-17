@@ -6,7 +6,8 @@ class PokemonDetailsRepository {
   final PokemonDetailsService _pokemonDetailsService =
       getIt.get<PokemonDetailsService>();
 
-  Future<PokemonDetailsServiceResponse> requestToGetPokemonDetails(String url) async {
+  Future<PokemonDetailsServiceResponse> requestToGetPokemonDetails(
+      String url) async {
     PokemonDetailsServiceResponse pokemonDetailsServiceResponse =
         await _pokemonDetailsService.requestToGetPokemonDetails(url);
 
