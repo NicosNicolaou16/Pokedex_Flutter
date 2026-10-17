@@ -70,7 +70,7 @@ class PokemonDetailsBloc
         await PokemonDetailsDataModel.createPokemonDetailsDataModel(
             event.pokemonEntity);
     emit(state.copyWith(
-      color: event.color,
+      color: state.color == Colors.transparent ? event.color : state.color,
       pokemonDetailsDataModelList: pokemonDetailsDataModelList,
       pokemonDetailsStatesEnum: PokemonDetailsStatesEnum.loaded,
     ));
