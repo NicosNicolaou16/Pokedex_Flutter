@@ -127,7 +127,7 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
         ),
         color: Colors.green,
         child: Hero(
-          tag: pokemonEntity.imageUrl ?? "",
+          tag: "pokemon-${pokemonEntity.name}",
           child: CachedNetworkImage(
             imageUrl: pokemonEntity.imageUrl ?? "",
             imageBuilder: (context, imageProvider) => Container(
