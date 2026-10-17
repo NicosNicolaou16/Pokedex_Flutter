@@ -1,5 +1,5 @@
 import 'package:pokedex_flutter/data/database/entities/pokemon_entity.dart';
-import 'package:pokedex_flutter/domain/remote/pokemon_service.dart';
+import 'package:pokedex_flutter/data/remote/pokemon_service.dart';
 import 'package:pokedex_flutter/utils/get_it_dependencies_injection.dart';
 
 class PokemonRepository {
