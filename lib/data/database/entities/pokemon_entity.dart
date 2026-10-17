@@ -70,7 +70,7 @@ class PokemonEntity {
       await deleteAllPokemon(appDb);
     }
     await Future.forEach(pokemonList, (pokemon) async {
-      _buildImageUrl(pokemon);
+      await _buildImageUrl(pokemon);
       await appDb.into(appDb.pokemon).insertOnConflictUpdate(
           pokemon.toCompanion(pokemon.imageUrl, pokemon.order));
     });
