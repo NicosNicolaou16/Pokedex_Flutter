@@ -29,7 +29,8 @@ class PokemonListBloc extends Bloc<PokemonEvents, PokemonStates> {
       event.isFirstTime,
     )
         .then((pokemonServiceResponse) async {
-      if (pokemonServiceResponse.pokemonEntityList != null) {
+      if (pokemonServiceResponse.pokemonEntityList != null &&
+          pokemonServiceResponse.pokemonEntityList!.isNotEmpty) {
         if (event.isFirstTime == true) {
           _pokemonEntityList = pokemonServiceResponse.pokemonEntityList!;
         } else {
