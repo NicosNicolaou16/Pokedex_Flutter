@@ -70,7 +70,7 @@ class PokemonEntity {
       await deleteAllPokemon(appDb);
     }
     await Future.forEach(pokemonList, (pokemon) async {
-      await _buildImageUrl(pokemon);
+      _buildImageUrl(pokemon);
       await appDb.into(appDb.pokemon).insertOnConflictUpdate(
           pokemon.toCompanion(pokemon.imageUrl, pokemon.order));
     });
@@ -78,7 +78,7 @@ class PokemonEntity {
     return pokemonList;
   }
 
-  static Future<void> _buildImageUrl(PokemonEntity pokemonEntity) async {
+  static void _buildImageUrl(PokemonEntity pokemonEntity) {
     RegExp exp = RegExp(r'\d+');
     Iterable<Match>? matches = exp.allMatches(pokemonEntity.url ?? "");
     String? pokemonIdAsString = matches.map((e) => e.group(0)!).lastOrNull;
