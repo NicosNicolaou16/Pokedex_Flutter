@@ -39,15 +39,15 @@ class PokemonEntity {
   }
 
   static List<PokemonEntity> fromJsonList(List json) {
-    List<PokemonEntity> shipEntityList;
+    List<PokemonEntity> pokemonEntityList;
     if (json != null) {
-      shipEntityList =
+      pokemonEntityList =
           List<PokemonEntity>.from(json.map((e) => PokemonEntity.fromJson(e)))
               .toList();
     } else {
       return [];
     }
-    return shipEntityList;
+    return pokemonEntityList;
   }
 
   PokemonCompanion toCompanion(String? imageUrl, int? order) {
