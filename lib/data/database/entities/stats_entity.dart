@@ -34,15 +34,15 @@ class StatsEntity {
   }
 
   static List<StatsEntity> fromJsonList(List json) {
-    List<StatsEntity> shipEntityList;
+    List<StatsEntity> statsEntityList;
     if (json != null) {
-      shipEntityList =
+      statsEntityList =
           List<StatsEntity>.from(json.map((e) => StatsEntity.fromJson(e)))
               .toList();
     } else {
       return [];
     }
-    return shipEntityList;
+    return statsEntityList;
   }
 
   StatsCompanion toCompanion(
