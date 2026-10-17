@@ -42,7 +42,7 @@ dependencies:
   sqlite3: ^3.7.1
   path_provider: ^2.1.6
   path: ^1.9.0
-  cached_network_image: ^3.4.1
+  cached_network_image: ^4.0.4
   get_it: ^9.3.0
   percentages_with_animation: ^1.1.7
 
