@@ -20,22 +20,18 @@ class PokemonServiceResponse {
 
 class PokemonService {
   Future<PokemonServiceResponse> requestToGetPokemon(String url) async {
-    return getIt
-        .get<Dio>()
-        .get(url)
-        .then((response) {
-      if (response.statusCode! == 200 || response.statusCode! == 201) {
-        return PokemonServiceResponse(
-            pokemonEntityList:
-                PokemonEntity.fromJsonList(response.data["results"]),
-            nextUrl: response.data["next"]);
-      } else {
-        return PokemonServiceResponse(
-            statusMessage: response.statusMessage,
-            statusCode: response.statusCode);
-      }
-    }).catchError((err) async {
-      return PokemonServiceResponse(dioException: err as DioException);
-    });
+    try {
+      final response = await getIt.get<Dio>().get(url);
+      return PokemonServiceResponse(
+        pokemonEntityList:
+            PokemonEntity.fromJsonList(response.data["results"] as List),
+        nextUrl: response.data["next"] as String?,
+      );
+    } on DioException catch (e) {
+      return PokemonServiceResponse(
+          dioException: e, statusCode: e.response?.statusCode);
+    } catch (e) {
+      return PokemonServiceResponse(statusMessage: "Unexpected response: $e");
+    }
   }
 }
