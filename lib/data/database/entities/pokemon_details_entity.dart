@@ -45,7 +45,10 @@ class PokemonDetailsEntity {
     PokemonDetailsEntity pokemonDetailsEntity,
   ) async {
     AppDb appDb = getIt.get<AppDb>();
-    await StatsEntity.deleteAllStats(appDb);
+    if (pokemonDetailsEntity.name != null) {
+      await StatsEntity.deleteStatsByPokemonName(
+          appDb, pokemonDetailsEntity.name!);
+    }
     await appDb
         .into(appDb.pokemonDetails)
         .insertOnConflictUpdate(pokemonDetailsEntity.toCompanion());
